@@ -1,1 +1,1 @@
-export type * from "./internal/AYS.js";
+export type * from "./internal/AYS";

@@ -40,7 +40,6 @@
     },
     "dev": {
       "dependsOn": ["^build"],
-      "persistent": false,
       "cache": false
     },
     "clean": {

@@ -1,1 +1,1 @@
-export * from "./internal/SchemaUtil.js";
+export * from "./internal/SchemaUtil";

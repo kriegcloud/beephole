@@ -1,13 +1,12 @@
-import { TodosContract } from "@beep/domain";
 import { type TodoId } from "@beep/domain/EntityIds";
+import { TodosContract } from "@beep/domain/api/Contracts";
 import * as Effect from "effect/Effect";
 import { ApiClient } from "../layers/api-client";
 import {
-  QueryData,
   useEffectMutation,
   useEffectQuery,
-} from "../lib/tanstack-query";
-
+} from "../lib/tanstack-query/effect-query";
+import * as QueryData from "../lib/tanstack-query/query-data-helpers";
 export namespace TodosQueries {
   const todosKey = QueryData.makeQueryKey("todos");
   const todosHelpers =

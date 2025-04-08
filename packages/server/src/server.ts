@@ -10,10 +10,10 @@ import * as Duration from "effect/Duration";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Schedule from "effect/Schedule";
-import { Api } from "./api.js";
-import { EnvVars } from "./common/env-vars.js";
-import { UserAuthMiddlewareLive } from "./public/middlewares/auth-middleware-live.js";
-import { TodosLive } from "./public/todos/todos-live.js";
+import { Api } from "./api";
+import { EnvVars } from "./common/env-vars";
+import { UserAuthMiddlewareLive } from "./public/middlewares/auth-middleware-live";
+import { TodosLive } from "./public/todos/todos-live";
 
 const ApiLive = HttpApiBuilder.api(Api).pipe(
   Layer.provide([TodosLive]),
@@ -52,7 +52,9 @@ const CorsLive = Layer.unwrapEffect(
   EnvVars.pipe(
     Effect.map((envVars) =>
       HttpApiBuilder.middlewareCors({
-        allowedOrigins: [envVars.ENV === "dev" ? "*" : envVars.APP_URL],
+        allowedOrigins: [
+          envVars.ENV === "dev" ? "*" : envVars.NEXT_PUBLIC_APP_URL,
+        ],
         allowedMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
         allowedHeaders: ["Content-Type", "Authorization", "B3", "traceparent"],
         credentials: true,

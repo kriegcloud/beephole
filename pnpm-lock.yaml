@@ -40,12 +40,18 @@ importers:
       '@effect/vitest':
         specifier: 0.20.6
         version: 0.20.6(effect@3.14.6)(vitest@2.1.9(@types/node@22.14.0)(happy-dom@15.11.7))
+      '@types/dotenv':
+        specifier: ^8.2.3
+        version: 8.2.3
       '@types/node':
         specifier: ^22.8.5
         version: 22.14.0
       babel-plugin-annotate-pure-calls:
         specifier: ^0.4.0
         version: 0.4.0(patch_hash=fc3e96d4b985224ea421609113ce0b74baeb5000c4f0019bfc67780795721adf)(@babel/core@7.26.10)
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
       effect:
         specifier: 3.14.6
         version: 3.14.6
@@ -77,10 +83,10 @@ importers:
   apps/client:
     dependencies:
       '@beep/domain':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../packages/domain/dist
       '@beep/kernel':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../packages/kernel/dist
       '@effect/platform':
         specifier: 0.80.6
@@ -106,9 +112,6 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.102.1
         version: 1.115.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      effect:
-        specifier: 3.14.6
-        version: 3.14.6
       mutative:
         specifier: ^1.1.0
         version: 1.1.0
@@ -2070,6 +2073,10 @@ packages:
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
+  '@types/dotenv@8.2.3':
+    resolution: {integrity: sha512-g2FXjlDX/cYuc5CiQvyU/6kkbP1JtmGzh0obW50zD7OKeILVL0NSpPWLXVfqoAGQjom2/SLLx9zHq0KXvD6mbw==}
+    deprecated: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
+
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
 
@@ -2559,6 +2566,10 @@ packages:
 
   dom-helpers@5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
+
+  dotenv@16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
 
   drizzle-kit@0.30.6:
     resolution: {integrity: sha512-U4wWit0fyZuGuP7iNmRleQyK2V8wCuv57vf5l3MnG4z4fzNTjY/U13M8owyQ5RavqvqxBifWORaR3wIUzlN64g==}
@@ -5714,6 +5725,10 @@ snapshots:
 
   '@types/cookie@0.6.0': {}
 
+  '@types/dotenv@8.2.3':
+    dependencies:
+      dotenv: 16.4.7
+
   '@types/estree@1.0.7': {}
 
   '@types/node@22.14.0':
@@ -6241,6 +6256,8 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.27.0
       csstype: 3.1.3
+
+  dotenv@16.4.7: {}
 
   drizzle-kit@0.30.6:
     dependencies:

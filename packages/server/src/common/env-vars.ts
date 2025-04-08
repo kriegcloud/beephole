@@ -12,7 +12,7 @@ export class EnvVars extends Effect.Service<EnvVars>()("EnvVars", {
         "prod",
         "staging",
       )("ENV").pipe(Config.withDefault("dev")),
-      APP_URL: yield* Config.url("APP_URL").pipe(
+      NEXT_PUBLIC_APP_URL: yield* Config.url("NEXT_PUBLIC_API_URL").pipe(
         Config.map((url) => url.toString()),
         Config.withDefault("http://localhost:5173"),
       ),

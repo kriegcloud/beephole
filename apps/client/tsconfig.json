@@ -6,20 +6,17 @@
     "./.next/types/**/*.ts",
     ".next/types/**/*.ts"
   ],
-  "files": [],
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "target": "ES2023",
+    "useDefineForClassFields": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
     "isolatedModules": true,
+    "noEmit": true,
     "jsx": "preserve",
-    "incremental": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -27,14 +24,13 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@beep/domain": ["../../packages/domain/src/index.ts"],
       "@beep/domain/*": ["../../packages/domain/src/*"]
     },
-    "target": "ES2017"
+    "allowJs": true,
+    "strict": false,
+    "incremental": true,
+    "module": "esnext",
+    "esModuleInterop": true
   },
-  "exclude": ["node_modules", "public/__ENV.js", ".next"],
-  "references": [
-    { "path": "../../packages/domain" },
-    { "path": "../../packages/kernel" }
-  ]
+  "exclude": [".next"]
 }

@@ -3,9 +3,9 @@ import * as Cause from "effect/Cause";
 import * as Effect from "effect/Effect";
 import * as Exit from "effect/Exit";
 import * as Layer from "effect/Layer";
-import * as CustomHttpApiError from "../src/CustomHttpApiError.js";
-import { UserId } from "../src/EntityIds.js";
-import * as Policy from "../src/Policy.js";
+import * as CustomHttpApiError from "../src/CustomHttpApiError";
+import { UserId } from "../src/EntityIds";
+import * as Policy from "../src/Policy";
 
 const mockUser = (
   permissions: ReadonlyArray<Policy.Permission>,

@@ -1,1 +1,1 @@
-export * from "./internal/SchemaComposer.js";
+export * from "./internal/SchemaComposer";

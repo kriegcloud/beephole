@@ -1,1 +1,1 @@
-export * as TodosContract from "./TodosContract.js";
+export * as TodosContract from "./TodosContract";

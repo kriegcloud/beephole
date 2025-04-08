@@ -2,7 +2,7 @@ import { strictEqual } from "node:assert";
 import { describe, it } from "@effect/vitest";
 import * as Effect from "effect/Effect";
 import * as TestClock from "effect/TestClock";
-import * as ManualCache from "../src/ManualCache.js";
+import * as ManualCache from "../src/ManualCache";
 
 describe("ManualCache", () => {
   it.scoped("should handle basic set and get operations", () =>

@@ -3,7 +3,8 @@ import { cookies } from "next/headers.js";
 import * as React from "react";
 import "@mui/material-pigment-css/styles.css";
 import { App } from "../components/App";
-import { ColorSchemeProvider } from "../components/ColorSchemeProvider";
+
+import { RootProviders } from "../components/RootProviders";
 
 export const metadata: Metadata = {
   title: "Material UI x Pigment CSS",
@@ -18,9 +19,11 @@ export default async function RootLayout({
   const { value: colorScheme = "light" } = cookieStore.get("colorScheme") ?? {};
   return (
     <html lang="en">
-      <ColorSchemeProvider colorScheme={colorScheme}>
-        <App>{children}</App>
-      </ColorSchemeProvider>
+      <App>
+        <RootProviders colorScheme={colorScheme as "light" | "dark"}>
+          {children}
+        </RootProviders>
+      </App>
     </html>
   );
 }

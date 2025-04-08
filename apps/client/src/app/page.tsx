@@ -8,8 +8,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { useColorScheme } from "../components/ColorSchemeProvider";
-
 const Title = styled("div")(({ theme }) => ({
   color: theme.vars.palette.text.primary,
   font: theme.vars.font.body1,

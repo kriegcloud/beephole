@@ -1,6 +1,7 @@
 "use client";
+import * as DateTime from "effect/DateTime";
+import * as F from "effect/Function";
 import * as React from "react";
-
 const ColorSchemeContext = React.createContext<{
   colorScheme: string;
   setColorScheme: React.Dispatch<React.SetStateAction<string>>;
@@ -12,9 +13,17 @@ const ColorSchemeContext = React.createContext<{
 function setCookie(name: string, value: string, days = 100) {
   let expires = "";
   if (days) {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = `; expires=${date.toUTCString()}`;
+    // Use DateTime module to handle date calculations
+    const currentDate = DateTime.unsafeNow();
+    const expiryDate = F.pipe(
+      currentDate,
+      (date) => DateTime.add(date, { days }),
+      // Use toDate to get a JavaScript Date object
+      (date) => DateTime.toDateUtc(date),
+      // Use the standard Date toUTCString for cookie format
+      (date) => date.toUTCString(),
+    );
+    expires = `; expires=${expiryDate}`;
   }
   document.cookie = `${name}=${value || ""}${expires}; path=/`;
 }

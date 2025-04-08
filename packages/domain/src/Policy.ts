@@ -3,9 +3,9 @@ import type { NonEmptyReadonlyArray } from "effect/Array";
 import * as Context from "effect/Context";
 import * as Effect from "effect/Effect";
 import * as S from "effect/Schema";
-import * as CustomHttpApiError from "./CustomHttpApiError.js";
-import type { UserId } from "./EntityIds.js";
-import * as internal from "./internal/policy.js";
+import * as CustomHttpApiError from "./CustomHttpApiError";
+import type { UserId } from "./EntityIds";
+import * as internal from "./internal/policy";
 
 // ==========================================
 // Permissions

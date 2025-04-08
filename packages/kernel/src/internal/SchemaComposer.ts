@@ -8,7 +8,7 @@ import { Data, Effect, Option, SchemaAST, pipe } from "effect";
 import * as ReadonlyArray from "effect/Array";
 import * as R from "effect/Record";
 import * as S from "effect/Schema";
-import type * as AYS from "./AYS.js";
+import type * as AYS from "./AYS";
 /**
  * @since 0.1.0
  * @category models

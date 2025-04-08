@@ -1,3 +1,4 @@
+"use client";
 import {
   QueryClientProvider,
   QueryClient as TanstackQueryClient,
@@ -8,13 +9,12 @@ import * as Layer from "effect/Layer";
 import * as Logger from "effect/Logger";
 import * as ManagedRuntime from "effect/ManagedRuntime";
 import React from "react";
-import { ColorSchemeProvider } from "./ColorSchemeProvider";
-import "./index.css";
 import { ApiClient } from "../layers/api-client";
 import { NetworkMonitor } from "../layers/common/network-monitor";
 import { QueryClient } from "../layers/common/query-client";
 import { type LiveManagedRuntime } from "../layers/live-layer";
 import { RuntimeProvider } from "../layers/runtime/runtime-provider";
+import { ColorSchemeProvider } from "./ColorSchemeProvider";
 
 type InnerProvidersProps = {
   children: React.ReactNode;

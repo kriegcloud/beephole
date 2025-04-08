@@ -1,7 +1,8 @@
-import { Database, DbSchema } from "@beep/database/index";
+import { Database } from "@beep/database/index";
+import { todosTable } from "@beep/database/tables/todos-tables"
 import { TodoId } from "@beep/domain/EntityIds";
 import { TodosContract } from "@beep/domain";
-import * as d from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import * as Array from "effect/Array";
 import * as Effect from "effect/Effect";
 import * as S from "effect/Schema";
@@ -20,7 +21,7 @@ export class TodosRepository extends Effect.Service<TodosRepository>()(
 					},
 				) =>
 					execute((client) =>
-						client.insert(DbSchema.todosTable).values(input).returning(),
+						client.insert(todosTable).values(input).returning(),
 					).pipe(
 						Effect.flatMap(Array.head),
 						Effect.flatMap(S.decode(TodosContract.Todo)),
@@ -44,9 +45,9 @@ export class TodosRepository extends Effect.Service<TodosRepository>()(
 				) =>
 					execute((client) =>
 						client
-							.update(DbSchema.todosTable)
+							.update(todosTable)
 							.set(input)
-							.where(d.eq(DbSchema.todosTable.id, input.id))
+							.where(eq(todosTable.id, input.id))
 							.returning(),
 					).pipe(
 						Effect.flatMap(Array.head),
@@ -81,9 +82,9 @@ export class TodosRepository extends Effect.Service<TodosRepository>()(
 			const del = db.makeQuery((execute, input: TodoId) =>
 				execute((client) =>
 					client
-						.delete(DbSchema.todosTable)
-						.where(d.eq(DbSchema.todosTable.id, input))
-						.returning({ id: DbSchema.todosTable.id }),
+						.delete(todosTable)
+						.where(eq(todosTable.id, input))
+						.returning({ id: todosTable.id }),
 				).pipe(
 					Effect.flatMap(Array.head),
 					Effect.flatMap(S.decode(S.Struct({ id: TodoId }))),

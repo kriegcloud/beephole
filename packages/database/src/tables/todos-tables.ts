@@ -5,7 +5,7 @@ import { constant } from "effect/Function";
 const utcNow = constant(DateTime.toDateUtc(DateTime.unsafeNow()));
 
 export const todosTable = pg.pgTable("todos", {
-  id: pg.uuid("id").primaryKey().defaultRandom(),
+  id: pg.uuid("id").primaryKey().notNull().defaultRandom(),
   title: pg.text("title").notNull(),
   completed: pg.boolean("completed").notNull().default(false),
   createdAt: pg

@@ -24,29 +24,33 @@
     "lint": "biome check .",
     "lint:fix": "biome check . --write",
     "coverage": "vitest --coverage",
-    "db:generate": "NODE_OPTIONS='--import tsx' drizzle-kit generate",
-    "db:migrate": "NODE_OPTIONS='--import tsx' drizzle-kit migrate",
-    "db:push": "NODE_OPTIONS='--import tsx' drizzle-kit push",
-    "db:studio": "NODE_OPTIONS='--import tsx' drizzle-kit studio"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@beep/kernel": "workspace:^",
     "@effect/platform": "0.80.6",
-    "drizzle-orm": "0.39.2",
+    "drizzle-orm": "latest",
     "effect": "3.14.6",
-    "pg": "8.13.1"
+    "pg": "latest"
   },
   "effect": {
     "generateExports": {
-      "include": ["**/*.ts"]
+      "include": [
+        "**/*.ts"
+      ]
     },
     "generateIndex": {
-      "include": ["**/*.ts"]
+      "include": [
+        "**/*.ts"
+      ]
     }
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/pg": "^8.11.11",
-    "drizzle-kit": "^0.30.4"
+    "drizzle-kit": "latest"
   }
 }

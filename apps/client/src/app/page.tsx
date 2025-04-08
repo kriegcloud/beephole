@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useColorScheme } from "../components/ColorSchemeProvider";
+import {TodosQueries} from "@/data-access/todos-queries";
 const Title = styled("div")(({ theme }) => ({
   color: theme.vars.palette.text.primary,
   font: theme.vars.font.body1,
@@ -23,6 +24,9 @@ export default function Home() {
   const toggleColorScheme = () => {
     setColorScheme(colorScheme === "dark" ? "light" : "dark");
   };
+
+  const todosQuery = TodosQueries.useTodosQuery()
+  console.log("todosQuery", todosQuery.data)
 
   return (
     <main sx={{ minHeight: "100lvh", display: "grid", placeItems: "center" }}>

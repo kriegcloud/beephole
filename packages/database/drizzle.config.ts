@@ -1,14 +1,16 @@
 import { defineConfig } from "drizzle-kit";
+import { config as dotenv } from "dotenv";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL ENV NOT FOUND");
-}
+dotenv({
+  path: "../../.env",
+});
 
 export default defineConfig({
   out: "./drizzle",
   schema: "./src/DbSchema.ts",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL,
+    // biome-ignore lint/style/noNonNullAssertion: <explanation>
+    url: process.env.DATABASE_URL!,
   },
 });

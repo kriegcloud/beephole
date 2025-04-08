@@ -16,7 +16,7 @@ import * as Option from "effect/Option";
 import * as Redacted from "effect/Redacted";
 import * as Runtime from "effect/Runtime";
 import * as pg from "pg";
-import * as DbSchema from "./DbSchema.js";
+import * as DbSchema from "./DbSchema";
 type TransactionClient = PgTransaction<
   NodePgQueryResultHKT,
   typeof DbSchema,

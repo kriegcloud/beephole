@@ -2,6 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "include": [],
   "exclude": ["src/**/*.test.ts"],
+  "compilerOptions": {
+    "exactOptionalPropertyTypes": true,
+  },
   "references": [
     { "path": "tsconfig.src.json" },
     { "path": "tsconfig.test.json" }

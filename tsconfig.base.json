@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "strict": true,
-    "exactOptionalPropertyTypes": true,
     "moduleDetection": "force",
     "composite": true,
     "downlevelIteration": true,
@@ -23,6 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": false,
     "noErrorTruncation": false,
+    "exactOptionalPropertyTypes": false,
     "allowJs": false,
     "checkJs": false,
     "forceConsistentCasingInFileNames": true,

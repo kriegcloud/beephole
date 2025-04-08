@@ -1,1 +1,1 @@
-export * from "./tables/todos-tables.js";
+export * from "./tables/todos-tables";

@@ -2,7 +2,7 @@
 
 A monorepo containing four packages:
 
-- `packages/client`: A Vite React application
+- `packages/client`: A NextJS React application
 - `packages/server`: Backend server
 - `packages/domain`: Shared domain logic consumed by both client and server
 - `packages/database`: Database schema and migrations

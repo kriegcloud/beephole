@@ -1,24 +1,19 @@
+import { createServer } from "node:http";
+import { Database } from "@beep/database/index";
 import * as NodeSdk from "@effect/opentelemetry/NodeSdk";
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import * as HttpApiBuilder from "@effect/platform/HttpApiBuilder";
 import * as HttpMiddleware from "@effect/platform/HttpMiddleware";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
-import { Database } from "@org/database/index";
-import * as dotenv from "dotenv";
 import * as Duration from "effect/Duration";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Schedule from "effect/Schedule";
-import { createServer } from "node:http";
 import { Api } from "./api.js";
 import { EnvVars } from "./common/env-vars.js";
 import { UserAuthMiddlewareLive } from "./public/middlewares/auth-middleware-live.js";
 import { TodosLive } from "./public/todos/todos-live.js";
-
-dotenv.config({
-  path: "../../.env",
-});
 
 const ApiLive = HttpApiBuilder.api(Api).pipe(
   Layer.provide([TodosLive]),
@@ -69,7 +64,11 @@ const CorsLive = Layer.unwrapEffect(
 const HttpLive = HttpApiBuilder.serve(HttpMiddleware.logger).pipe(
   Layer.provide(CorsLive),
   Layer.provide(ApiLive),
-  Layer.merge(Layer.effectDiscard(Database.Database.use((db) => db.setupConnectionListeners))),
+  Layer.merge(
+    Layer.effectDiscard(
+      Database.Database.use((db) => db.setupConnectionListeners),
+    ),
+  ),
   Layer.provide(DatabaseLive),
   Layer.provide(NodeSdkLive),
   Layer.provide(EnvVars.Default),

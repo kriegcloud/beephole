@@ -1,9 +1,9 @@
+import { deepStrictEqual } from "node:assert";
 import { describe, it } from "@effect/vitest";
-import { deepStrictEqual } from "assert";
 import * as Effect from "effect/Effect";
 import * as Exit from "effect/Exit";
 import * as Redacted from "effect/Redacted";
-import * as Schema from "effect/Schema";
+import * as S from "effect/Schema";
 import * as TokenCipher from "./token-cipher.js";
 
 const TEST_KEY = Redacted.make("test-key-32-chars-exactly-12345678");
@@ -14,28 +14,35 @@ const TestCipher = TokenCipher.layer({
 
 describe("TokenCipher", () => {
   describe("encrypt", () => {
-    it.effect("should encrypt a token and return base64 encoded consolidated data", () =>
-      Effect.gen(function* () {
-        const tokenCipher = yield* TokenCipher.TokenCipher;
-        const token = Redacted.make("my-secret-token");
+    it.effect(
+      "should encrypt a token and return base64 encoded consolidated data",
+      () =>
+        Effect.gen(function* () {
+          const tokenCipher = yield* TokenCipher.TokenCipher;
+          const token = Redacted.make("my-secret-token");
 
-        const result = yield* tokenCipher.encrypt(token);
+          const result = yield* tokenCipher.encrypt(token);
 
-        deepStrictEqual(typeof result, "string");
-        deepStrictEqual(Buffer.from(result, "base64").toString("base64"), result);
-      }).pipe(Effect.provide(TestCipher)),
+          deepStrictEqual(typeof result, "string");
+          deepStrictEqual(
+            Buffer.from(result, "base64").toString("base64"),
+            result,
+          );
+        }).pipe(Effect.provide(TestCipher)),
     );
 
-    it.effect("should produce different ciphertexts for the same plaintext due to random IV", () =>
-      Effect.gen(function* () {
-        const tokenCipher = yield* TokenCipher.TokenCipher;
-        const token = Redacted.make("my-secret-token");
+    it.effect(
+      "should produce different ciphertexts for the same plaintext due to random IV",
+      () =>
+        Effect.gen(function* () {
+          const tokenCipher = yield* TokenCipher.TokenCipher;
+          const token = Redacted.make("my-secret-token");
 
-        const result1 = yield* tokenCipher.encrypt(token);
-        const result2 = yield* tokenCipher.encrypt(token);
+          const result1 = yield* tokenCipher.encrypt(token);
+          const result2 = yield* tokenCipher.encrypt(token);
 
-        deepStrictEqual(result1 !== result2, true);
-      }).pipe(Effect.provide(TestCipher)),
+          deepStrictEqual(result1 !== result2, true);
+        }).pipe(Effect.provide(TestCipher)),
     );
 
     it.effect("should handle empty strings", () =>
@@ -46,7 +53,10 @@ describe("TokenCipher", () => {
         const result = yield* tokenCipher.encrypt(token);
 
         deepStrictEqual(typeof result, "string");
-        deepStrictEqual(Buffer.from(result, "base64").toString("base64"), result);
+        deepStrictEqual(
+          Buffer.from(result, "base64").toString("base64"),
+          result,
+        );
       }).pipe(Effect.provide(TestCipher)),
     );
 
@@ -59,7 +69,10 @@ describe("TokenCipher", () => {
         const result = yield* tokenCipher.encrypt(token);
 
         deepStrictEqual(typeof result, "string");
-        deepStrictEqual(Buffer.from(result, "base64").toString("base64"), result);
+        deepStrictEqual(
+          Buffer.from(result, "base64").toString("base64"),
+          result,
+        );
       }).pipe(Effect.provide(TestCipher)),
     );
   });
@@ -108,7 +121,9 @@ describe("TokenCipher", () => {
 
         const invalidData = Buffer.from("invalid-data").toString("base64");
 
-        const result = yield* tokenCipher.decrypt(invalidData).pipe(Effect.exit);
+        const result = yield* tokenCipher
+          .decrypt(invalidData)
+          .pipe(Effect.exit);
 
         deepStrictEqual(Exit.isFailure(result), true);
       }).pipe(Effect.provide(TestCipher)),
@@ -116,75 +131,84 @@ describe("TokenCipher", () => {
   });
 
   describe("encryption properties", () => {
-    it.effect("should produce different ciphertexts for different plaintexts", () =>
-      Effect.gen(function* () {
-        const tokenCipher = yield* TokenCipher.TokenCipher;
-        const token1 = Redacted.make("first-token");
-        const token2 = Redacted.make("second-token");
+    it.effect(
+      "should produce different ciphertexts for different plaintexts",
+      () =>
+        Effect.gen(function* () {
+          const tokenCipher = yield* TokenCipher.TokenCipher;
+          const token1 = Redacted.make("first-token");
+          const token2 = Redacted.make("second-token");
 
-        const encrypted1 = yield* tokenCipher.encrypt(token1);
-        const encrypted2 = yield* tokenCipher.encrypt(token2);
+          const encrypted1 = yield* tokenCipher.encrypt(token1);
+          const encrypted2 = yield* tokenCipher.encrypt(token2);
 
-        deepStrictEqual(encrypted1 !== encrypted2, true);
-      }).pipe(Effect.provide(TestCipher)),
+          deepStrictEqual(encrypted1 !== encrypted2, true);
+        }).pipe(Effect.provide(TestCipher)),
     );
 
-    it.effect("should maintain data integrity through encryption and decryption cycles", () =>
-      Effect.gen(function* () {
-        const tokenCipher = yield* TokenCipher.TokenCipher;
-        const testCases = [
-          "simple token",
-          "",
-          "a".repeat(1000),
-          "special chars: !@#$%^&*()",
-          "unicode: 你好世界",
-          "numbers: 12345",
-          "mixed: abc123!@#",
-        ].map(Redacted.make);
+    it.effect(
+      "should maintain data integrity through encryption and decryption cycles",
+      () =>
+        Effect.gen(function* () {
+          const tokenCipher = yield* TokenCipher.TokenCipher;
+          const testCases = [
+            "simple token",
+            "",
+            "a".repeat(1000),
+            "special chars: !@#$%^&*()",
+            "unicode: 你好世界",
+            "numbers: 12345",
+            "mixed: abc123!@#",
+          ].map(Redacted.make);
 
-        for (const token of testCases) {
-          const encrypted = yield* tokenCipher.encrypt(token);
-          const decrypted = yield* tokenCipher.decrypt(encrypted);
+          for (const token of testCases) {
+            const encrypted = yield* tokenCipher.encrypt(token);
+            const decrypted = yield* tokenCipher.decrypt(encrypted);
 
-          deepStrictEqual(decrypted, Redacted.value(token));
-        }
-      }).pipe(Effect.provide(TestCipher)),
+            deepStrictEqual(decrypted, Redacted.value(token));
+          }
+        }).pipe(Effect.provide(TestCipher)),
     );
   });
 
   describe("makeSchema", () => {
-    it.effect("should correctly encode and decode data through the schema", () =>
-      Effect.gen(function* () {
-        const TestData = Schema.Struct({
-          id: Schema.Number,
-          name: Schema.String,
-        });
+    it.effect(
+      "should correctly encode and decode data through the schema",
+      () =>
+        Effect.gen(function* () {
+          const TestData = S.Struct({
+            id: S.Number,
+            name: S.String,
+          });
 
-        const schema = yield* TokenCipher.makeSchema(TestData, {
-          encryptionKey: TEST_KEY,
-          algorithm: "aes-256-gcm",
-        });
-        const testData = { id: 123, name: "test" };
+          const schema = yield* TokenCipher.makeSchema(TestData, {
+            encryptionKey: TEST_KEY,
+            algorithm: "aes-256-gcm",
+          });
+          const testData = { id: 123, name: "test" };
 
-        const encoded = yield* Schema.encode(schema)(Redacted.make(testData));
+          const encoded = yield* S.encode(schema)(Redacted.make(testData));
 
-        deepStrictEqual(typeof encoded, "string");
-        deepStrictEqual(Buffer.from(encoded, "base64").toString("base64"), encoded);
+          deepStrictEqual(typeof encoded, "string");
+          deepStrictEqual(
+            Buffer.from(encoded, "base64").toString("base64"),
+            encoded,
+          );
 
-        const decoded = Redacted.value(yield* Schema.decode(schema)(encoded));
+          const decoded = Redacted.value(yield* S.decode(schema)(encoded));
 
-        deepStrictEqual(decoded, testData);
-      }),
+          deepStrictEqual(decoded, testData);
+        }),
     );
 
     it.effect("should handle complex data structures", () =>
       Effect.gen(function* () {
-        const ComplexData = Schema.Struct({
-          nested: Schema.Struct({
-            array: Schema.Array(Schema.Number),
-            optional: Schema.optional(Schema.String),
+        const ComplexData = S.Struct({
+          nested: S.Struct({
+            array: S.Array(S.Number),
+            optional: S.optional(S.String),
           }),
-          date: Schema.String,
+          date: S.String,
         });
 
         const schema = yield* TokenCipher.makeSchema(ComplexData, {
@@ -199,11 +223,14 @@ describe("TokenCipher", () => {
           date: "2024-03-20",
         };
 
-        const encoded = yield* Schema.encode(schema)(Redacted.make(testData));
+        const encoded = yield* S.encode(schema)(Redacted.make(testData));
         deepStrictEqual(typeof encoded, "string");
-        deepStrictEqual(Buffer.from(encoded, "base64").toString("base64"), encoded);
+        deepStrictEqual(
+          Buffer.from(encoded, "base64").toString("base64"),
+          encoded,
+        );
 
-        const decoded = Redacted.value(yield* Schema.decode(schema)(encoded));
+        const decoded = Redacted.value(yield* S.decode(schema)(encoded));
 
         deepStrictEqual(decoded, testData);
       }),
@@ -211,8 +238,8 @@ describe("TokenCipher", () => {
 
     it.effect("should fail when decrypting with invalid data", () =>
       Effect.gen(function* () {
-        const TestData = Schema.Struct({
-          id: Schema.Number,
+        const TestData = S.Struct({
+          id: S.Number,
         });
 
         const schema = yield* TokenCipher.makeSchema(TestData, {
@@ -220,7 +247,7 @@ describe("TokenCipher", () => {
           algorithm: "aes-256-gcm",
         });
 
-        const result = yield* Schema.decode(schema)(
+        const result = yield* S.decode(schema)(
           "invaliddata" as typeof TokenCipher.EncryptedToken.Encoded,
         ).pipe(Effect.exit);
 
@@ -230,8 +257,8 @@ describe("TokenCipher", () => {
 
     it.effect("should fail when decoding invalid JSON after decryption", () =>
       Effect.gen(function* () {
-        const TestData = Schema.Struct({
-          id: Schema.Number,
+        const TestData = S.Struct({
+          id: S.Number,
         });
 
         const schema1 = yield* TokenCipher.makeSchema(TestData, {
@@ -243,30 +270,36 @@ describe("TokenCipher", () => {
           algorithm: "aes-256-gcm",
         });
 
-        const encoded = yield* Schema.encode(schema1)(Redacted.make({ id: 123 }));
+        const encoded = yield* S.encode(schema1)(Redacted.make({ id: 123 }));
 
         deepStrictEqual(typeof encoded, "string");
-        deepStrictEqual(Buffer.from(encoded, "base64").toString("base64"), encoded);
+        deepStrictEqual(
+          Buffer.from(encoded, "base64").toString("base64"),
+          encoded,
+        );
 
-        const result = yield* Schema.decode(schema2)(encoded).pipe(Effect.exit);
+        const result = yield* S.decode(schema2)(encoded).pipe(Effect.exit);
         deepStrictEqual(Exit.isFailure(result), true);
       }),
     );
 
     it.effect("should handle empty objects", () =>
       Effect.gen(function* () {
-        const EmptyStruct = Schema.Struct({});
+        const EmptyStruct = S.Struct({});
         const schema = yield* TokenCipher.makeSchema(EmptyStruct, {
           encryptionKey: TEST_KEY,
           algorithm: "aes-256-gcm",
         });
         const testData = {};
 
-        const encoded = yield* Schema.encode(schema)(Redacted.make(testData));
+        const encoded = yield* S.encode(schema)(Redacted.make(testData));
         deepStrictEqual(typeof encoded, "string");
-        deepStrictEqual(Buffer.from(encoded, "base64").toString("base64"), encoded);
+        deepStrictEqual(
+          Buffer.from(encoded, "base64").toString("base64"),
+          encoded,
+        );
 
-        const decoded = Redacted.value(yield* Schema.decode(schema)(encoded));
+        const decoded = Redacted.value(yield* S.decode(schema)(encoded));
 
         deepStrictEqual(decoded, testData);
       }),
@@ -274,8 +307,8 @@ describe("TokenCipher", () => {
 
     it.effect("should use the specified encryption algorithm", () =>
       Effect.gen(function* () {
-        const TestData = Schema.Struct({
-          id: Schema.Number,
+        const TestData = S.Struct({
+          id: S.Number,
         });
 
         const schema = yield* TokenCipher.makeSchema(TestData, {
@@ -284,11 +317,14 @@ describe("TokenCipher", () => {
         });
 
         const testData = { id: 123 };
-        const encoded = yield* Schema.encode(schema)(Redacted.make(testData));
+        const encoded = yield* S.encode(schema)(Redacted.make(testData));
         deepStrictEqual(typeof encoded, "string");
-        deepStrictEqual(Buffer.from(encoded, "base64").toString("base64"), encoded);
+        deepStrictEqual(
+          Buffer.from(encoded, "base64").toString("base64"),
+          encoded,
+        );
 
-        const decoded = Redacted.value(yield* Schema.decode(schema)(encoded));
+        const decoded = Redacted.value(yield* S.decode(schema)(encoded));
 
         deepStrictEqual(decoded, testData);
       }),
@@ -296,25 +332,30 @@ describe("TokenCipher", () => {
   });
 
   describe("makeSchemaWithContext", () => {
-    it.effect("should correctly encode and decode data through the schema", () =>
-      Effect.gen(function* () {
-        const TestData = Schema.Struct({
-          id: Schema.Number,
-          name: Schema.String,
-        });
+    it.effect(
+      "should correctly encode and decode data through the schema",
+      () =>
+        Effect.gen(function* () {
+          const TestData = S.Struct({
+            id: S.Number,
+            name: S.String,
+          });
 
-        const schema = yield* TokenCipher.makeSchemaWithContext(TestData);
-        const testData = { id: 123, name: "test" };
+          const schema = yield* TokenCipher.makeSchemaWithContext(TestData);
+          const testData = { id: 123, name: "test" };
 
-        const encoded = yield* Schema.encode(schema)(Redacted.make(testData));
+          const encoded = yield* S.encode(schema)(Redacted.make(testData));
 
-        deepStrictEqual(typeof encoded, "string");
-        deepStrictEqual(Buffer.from(encoded, "base64").toString("base64"), encoded);
+          deepStrictEqual(typeof encoded, "string");
+          deepStrictEqual(
+            Buffer.from(encoded, "base64").toString("base64"),
+            encoded,
+          );
 
-        const decoded = Redacted.value(yield* Schema.decode(schema)(encoded));
+          const decoded = Redacted.value(yield* S.decode(schema)(encoded));
 
-        deepStrictEqual(decoded, testData);
-      }).pipe(Effect.provide(TestCipher)),
+          deepStrictEqual(decoded, testData);
+        }).pipe(Effect.provide(TestCipher)),
     );
   });
 });

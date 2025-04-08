@@ -1,14 +1,14 @@
 import * as HttpApiSchema from "@effect/platform/HttpApiSchema";
-import * as Schema from "effect/Schema";
+import * as S from "effect/Schema";
 
 // ==========================================
 // 4xx Client Errors
 // ==========================================
 
-export class BadRequest extends Schema.TaggedError<BadRequest>("BadRequest")(
+export class BadRequest extends S.TaggedError<BadRequest>("BadRequest")(
   "BadRequest",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 400,
@@ -16,21 +16,24 @@ export class BadRequest extends Schema.TaggedError<BadRequest>("BadRequest")(
   }),
 ) {}
 
-export class Unauthorized extends Schema.TaggedError<Unauthorized>("Unauthorized")(
+export class Unauthorized extends S.TaggedError<Unauthorized>("Unauthorized")(
   "Unauthorized",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 401,
-    description: "Authentication is required and has failed or has not been provided",
+    description:
+      "Authentication is required and has failed or has not been provided",
   }),
 ) {}
 
-export class PaymentRequired extends Schema.TaggedError<PaymentRequired>("PaymentRequired")(
+export class PaymentRequired extends S.TaggedError<PaymentRequired>(
+  "PaymentRequired",
+)(
   "PaymentRequired",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 402,
@@ -38,21 +41,22 @@ export class PaymentRequired extends Schema.TaggedError<PaymentRequired>("Paymen
   }),
 ) {}
 
-export class Forbidden extends Schema.TaggedError<Forbidden>("Forbidden")(
+export class Forbidden extends S.TaggedError<Forbidden>("Forbidden")(
   "Forbidden",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 403,
-    description: "The server understood the request but refuses to authorize it",
+    description:
+      "The server understood the request but refuses to authorize it",
   }),
 ) {}
 
-export class NotFound extends Schema.TaggedError<NotFound>("NotFound")(
+export class NotFound extends S.TaggedError<NotFound>("NotFound")(
   "NotFound",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 404,
@@ -60,21 +64,26 @@ export class NotFound extends Schema.TaggedError<NotFound>("NotFound")(
   }),
 ) {}
 
-export class MethodNotAllowed extends Schema.TaggedError<MethodNotAllowed>("MethodNotAllowed")(
+export class MethodNotAllowed extends S.TaggedError<MethodNotAllowed>(
+  "MethodNotAllowed",
+)(
   "MethodNotAllowed",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 405,
-    description: "The method specified in the request is not allowed for the resource",
+    description:
+      "The method specified in the request is not allowed for the resource",
   }),
 ) {}
 
-export class NotAcceptable extends Schema.TaggedError<NotAcceptable>("NotAcceptable")(
+export class NotAcceptable extends S.TaggedError<NotAcceptable>(
+  "NotAcceptable",
+)(
   "NotAcceptable",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 406,
@@ -83,12 +92,12 @@ export class NotAcceptable extends Schema.TaggedError<NotAcceptable>("NotAccepta
   }),
 ) {}
 
-export class ProxyAuthenticationRequired extends Schema.TaggedError<ProxyAuthenticationRequired>(
+export class ProxyAuthenticationRequired extends S.TaggedError<ProxyAuthenticationRequired>(
   "ProxyAuthenticationRequired",
 )(
   "ProxyAuthenticationRequired",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 407,
@@ -96,10 +105,12 @@ export class ProxyAuthenticationRequired extends Schema.TaggedError<ProxyAuthent
   }),
 ) {}
 
-export class RequestTimeout extends Schema.TaggedError<RequestTimeout>("RequestTimeout")(
+export class RequestTimeout extends S.TaggedError<RequestTimeout>(
+  "RequestTimeout",
+)(
   "RequestTimeout",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 408,
@@ -107,10 +118,10 @@ export class RequestTimeout extends Schema.TaggedError<RequestTimeout>("RequestT
   }),
 ) {}
 
-export class Conflict extends Schema.TaggedError<Conflict>("Conflict")(
+export class Conflict extends S.TaggedError<Conflict>("Conflict")(
   "Conflict",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 409,
@@ -118,21 +129,24 @@ export class Conflict extends Schema.TaggedError<Conflict>("Conflict")(
   }),
 ) {}
 
-export class Gone extends Schema.TaggedError<Gone>("Gone")(
+export class Gone extends S.TaggedError<Gone>("Gone")(
   "Gone",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 410,
-    description: "The requested resource is no longer available and will not be available again",
+    description:
+      "The requested resource is no longer available and will not be available again",
   }),
 ) {}
 
-export class LengthRequired extends Schema.TaggedError<LengthRequired>("LengthRequired")(
+export class LengthRequired extends S.TaggedError<LengthRequired>(
+  "LengthRequired",
+)(
   "LengthRequired",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 411,
@@ -141,12 +155,12 @@ export class LengthRequired extends Schema.TaggedError<LengthRequired>("LengthRe
   }),
 ) {}
 
-export class PreconditionFailed extends Schema.TaggedError<PreconditionFailed>(
+export class PreconditionFailed extends S.TaggedError<PreconditionFailed>(
   "PreconditionFailed",
 )(
   "PreconditionFailed",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 412,
@@ -155,21 +169,24 @@ export class PreconditionFailed extends Schema.TaggedError<PreconditionFailed>(
   }),
 ) {}
 
-export class PayloadTooLarge extends Schema.TaggedError<PayloadTooLarge>("PayloadTooLarge")(
+export class PayloadTooLarge extends S.TaggedError<PayloadTooLarge>(
+  "PayloadTooLarge",
+)(
   "PayloadTooLarge",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 413,
-    description: "The request is larger than the server is willing or able to process",
+    description:
+      "The request is larger than the server is willing or able to process",
   }),
 ) {}
 
-export class URITooLong extends Schema.TaggedError<URITooLong>("URITooLong")(
+export class URITooLong extends S.TaggedError<URITooLong>("URITooLong")(
   "URITooLong",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 414,
@@ -177,12 +194,12 @@ export class URITooLong extends Schema.TaggedError<URITooLong>("URITooLong")(
   }),
 ) {}
 
-export class UnsupportedMediaType extends Schema.TaggedError<UnsupportedMediaType>(
+export class UnsupportedMediaType extends S.TaggedError<UnsupportedMediaType>(
   "UnsupportedMediaType",
 )(
   "UnsupportedMediaType",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 415,
@@ -191,12 +208,12 @@ export class UnsupportedMediaType extends Schema.TaggedError<UnsupportedMediaTyp
   }),
 ) {}
 
-export class RangeNotSatisfiable extends Schema.TaggedError<RangeNotSatisfiable>(
+export class RangeNotSatisfiable extends S.TaggedError<RangeNotSatisfiable>(
   "RangeNotSatisfiable",
 )(
   "RangeNotSatisfiable",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 416,
@@ -205,58 +222,66 @@ export class RangeNotSatisfiable extends Schema.TaggedError<RangeNotSatisfiable>
   }),
 ) {}
 
-export class ExpectationFailed extends Schema.TaggedError<ExpectationFailed>("ExpectationFailed")(
+export class ExpectationFailed extends S.TaggedError<ExpectationFailed>(
+  "ExpectationFailed",
+)(
   "ExpectationFailed",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 417,
-    description: "The server cannot meet the requirements of the Expect request-header field",
+    description:
+      "The server cannot meet the requirements of the Expect request-header field",
   }),
 ) {}
 
-export class UnprocessableEntity extends Schema.TaggedError<UnprocessableEntity>(
+export class UnprocessableEntity extends S.TaggedError<UnprocessableEntity>(
   "UnprocessableEntity",
 )(
   "UnprocessableEntity",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 422,
-    description: "The request was well-formed but was unable to be followed due to semantic errors",
+    description:
+      "The request was well-formed but was unable to be followed due to semantic errors",
   }),
 ) {}
 
-export class TooEarly extends Schema.TaggedError<TooEarly>("TooEarly")(
+export class TooEarly extends S.TaggedError<TooEarly>("TooEarly")(
   "TooEarly",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 425,
-    description: "The server is unwilling to risk processing a request that might be replayed",
+    description:
+      "The server is unwilling to risk processing a request that might be replayed",
   }),
 ) {}
 
-export class TooManyRequests extends Schema.TaggedError<TooManyRequests>("TooManyRequests")(
+export class TooManyRequests extends S.TaggedError<TooManyRequests>(
+  "TooManyRequests",
+)(
   "TooManyRequests",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 429,
-    description: "The user has sent too many requests in a given amount of time",
+    description:
+      "The user has sent too many requests in a given amount of time",
   }),
 ) {}
 
-export class RequestHeaderFieldsTooLarge extends Schema.TaggedError<RequestHeaderFieldsTooLarge>(
+export class RequestHeaderFieldsTooLarge extends S.TaggedError<RequestHeaderFieldsTooLarge>(
   "RequestHeaderFieldsTooLarge",
 )(
   "RequestHeaderFieldsTooLarge",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 431,
@@ -265,16 +290,17 @@ export class RequestHeaderFieldsTooLarge extends Schema.TaggedError<RequestHeade
   }),
 ) {}
 
-export class UnavailableForLegalReasons extends Schema.TaggedError<UnavailableForLegalReasons>(
+export class UnavailableForLegalReasons extends S.TaggedError<UnavailableForLegalReasons>(
   "UnavailableForLegalReasons",
 )(
   "UnavailableForLegalReasons",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 451,
-    description: "The server is denying access to the resource as a consequence of a legal demand",
+    description:
+      "The server is denying access to the resource as a consequence of a legal demand",
   }),
 ) {}
 
@@ -282,34 +308,38 @@ export class UnavailableForLegalReasons extends Schema.TaggedError<UnavailableFo
 // 5xx Server Errors
 // ==========================================
 
-export class InternalServerError extends Schema.TaggedError<InternalServerError>(
+export class InternalServerError extends S.TaggedError<InternalServerError>(
   "InternalServerError",
 )(
   "InternalServerError",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 500,
-    description: "The server has encountered a situation it doesn't know how to handle",
+    description:
+      "The server has encountered a situation it doesn't know how to handle",
   }),
 ) {}
 
-export class NotImplemented extends Schema.TaggedError<NotImplemented>("NotImplemented")(
+export class NotImplemented extends S.TaggedError<NotImplemented>(
+  "NotImplemented",
+)(
   "NotImplemented",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 501,
-    description: "The request method is not supported by the server and cannot be handled",
+    description:
+      "The request method is not supported by the server and cannot be handled",
   }),
 ) {}
 
-export class BadGateway extends Schema.TaggedError<BadGateway>("BadGateway")(
+export class BadGateway extends S.TaggedError<BadGateway>("BadGateway")(
   "BadGateway",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 502,
@@ -318,12 +348,12 @@ export class BadGateway extends Schema.TaggedError<BadGateway>("BadGateway")(
   }),
 ) {}
 
-export class ServiceUnavailable extends Schema.TaggedError<ServiceUnavailable>(
+export class ServiceUnavailable extends S.TaggedError<ServiceUnavailable>(
   "ServiceUnavailable",
 )(
   "ServiceUnavailable",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 503,
@@ -331,10 +361,12 @@ export class ServiceUnavailable extends Schema.TaggedError<ServiceUnavailable>(
   }),
 ) {}
 
-export class GatewayTimeout extends Schema.TaggedError<GatewayTimeout>("GatewayTimeout")(
+export class GatewayTimeout extends S.TaggedError<GatewayTimeout>(
+  "GatewayTimeout",
+)(
   "GatewayTimeout",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 504,
@@ -343,15 +375,16 @@ export class GatewayTimeout extends Schema.TaggedError<GatewayTimeout>("GatewayT
   }),
 ) {}
 
-export class HTTPVersionNotSupported extends Schema.TaggedError<HTTPVersionNotSupported>(
+export class HTTPVersionNotSupported extends S.TaggedError<HTTPVersionNotSupported>(
   "HTTPVersionNotSupported",
 )(
   "HTTPVersionNotSupported",
   {
-    message: Schema.optional(Schema.String),
+    message: S.optional(S.String),
   },
   HttpApiSchema.annotations({
     status: 505,
-    description: "The HTTP version used in the request is not supported by the server",
+    description:
+      "The HTTP version used in the request is not supported by the server",
   }),
 ) {}

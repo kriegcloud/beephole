@@ -1,0 +1,70 @@
+{
+  "name": "@beep/client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucas-barake/effect-monorepo.git",
+    "directory": "packages/client"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "biome check ",
+    "lint:fix": "biome check  --write",
+    "check": "tsc --noEmit",
+    "clean": "rm -rf node_modules .next .turbo",
+    "prepare": "husky",
+    "test": "vitest",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@effect/platform": "0.80.6",
+    "@beep/domain": "workspace:*",
+    "@beep/kernel": "workspace:*",
+    "@tanstack/react-form": "^0.43.2",
+    "@tanstack/react-query": "5.66.9",
+    "@tanstack/react-query-devtools": "^5.66.3",
+    "@tanstack/react-router": "^1.102.1",
+    "effect": "3.14.6",
+    "mutative": "^1.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "@mui/material": "latest",
+    "@mui/material-pigment-css": "latest",
+    "@pigment-css/react": "latest",
+    "next": "latest"
+  },
+  "devDependencies": {
+    "@tanstack/router-devtools": "^1.102.1",
+    "@tanstack/router-plugin": "^1.102.2",
+    "@testing-library/react": "^16.2.0",
+    "@types/react": "^19.1.0",
+    "@pigment-css/nextjs-plugin": "latest",
+    "@types/node": "latest",
+    "@types/react-dom": "^19.1.0",
+    "dotenv-cli": "8.0.0",
+    "typescript": "latest"
+  },
+  "effect": {
+    "generateExports": {
+      "include": [
+        "**/*.ts"
+      ]
+    },
+    "generateIndex": {
+      "include": [
+        "**/*.ts"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "typescript": "*"
+  },
+  "overrides": {
+    "overrides": {
+      "react-is": "^19.0.0-rc-69d4b800-20241021"
+    }
+  }
+}

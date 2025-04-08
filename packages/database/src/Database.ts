@@ -1,6 +1,11 @@
-import { type ExtractTablesWithRelations } from "drizzle-orm";
-import { drizzle, type NodePgDatabase, type NodePgQueryResultHKT } from "drizzle-orm/node-postgres";
-import { type PgTransaction } from "drizzle-orm/pg-core";
+import type { AYS } from "@beep/kernel";
+import type { ExtractTablesWithRelations } from "drizzle-orm";
+import {
+  type NodePgDatabase,
+  type NodePgQueryResultHKT,
+  drizzle,
+} from "drizzle-orm/node-postgres";
+import type { PgTransaction } from "drizzle-orm/pg-core";
 import * as Cause from "effect/Cause";
 import * as Context from "effect/Context";
 import * as Data from "effect/Data";
@@ -12,7 +17,6 @@ import * as Redacted from "effect/Redacted";
 import * as Runtime from "effect/Runtime";
 import * as pg from "pg";
 import * as DbSchema from "./DbSchema.js";
-
 type TransactionClient = PgTransaction<
   NodePgQueryResultHKT,
   typeof DbSchema,
@@ -39,7 +43,10 @@ export class TransactionContext extends Context.Tag("TransactionContext")<
 }
 
 export class DatabaseError extends Data.TaggedError("DatabaseError")<{
-  readonly type: "unique_violation" | "foreign_key_violation" | "connection_error";
+  readonly type:
+    | "unique_violation"
+    | "foreign_key_violation"
+    | "connection_error";
   readonly cause: pg.DatabaseError;
 }> {
   public override toString() {
@@ -57,7 +64,10 @@ const matchPgError = (error: unknown) => {
       case "23505":
         return new DatabaseError({ type: "unique_violation", cause: error });
       case "23503":
-        return new DatabaseError({ type: "foreign_key_violation", cause: error });
+        return new DatabaseError({
+          type: "foreign_key_violation",
+          cause: error,
+        });
       case "08000":
         return new DatabaseError({ type: "connection_error", cause: error });
     }
@@ -65,7 +75,9 @@ const matchPgError = (error: unknown) => {
   return null;
 };
 
-export class DatabaseConnectionLostError extends Data.TaggedError("DatabaseConnectionLostError")<{
+export class DatabaseConnectionLostError extends Data.TaggedError(
+  "DatabaseConnectionLostError",
+)<{
   cause: unknown;
   message: string;
 }> {}
@@ -107,7 +119,9 @@ const makeService = (config: Config) =>
           }),
       ),
       Effect.tap(() =>
-        Effect.logInfo("[Database client]: Connection to the database established."),
+        Effect.logInfo(
+          "[Database client]: Connection to the database established.",
+        ),
       ),
     );
 
@@ -128,7 +142,9 @@ const makeService = (config: Config) =>
           pool.removeAllListeners("error");
         });
       }),
-      Effect.logInfo("[Database client]: Connection error listeners initialized."),
+      Effect.logInfo(
+        "[Database client]: Connection error listeners initialized.",
+      ),
       {
         concurrent: true,
       },
@@ -150,13 +166,17 @@ const makeService = (config: Config) =>
     );
 
     const transaction = Effect.fn("Database.transaction")(
-      <T, E, R>(txExecute: (tx: TransactionContextShape) => Effect.Effect<T, E, R>) =>
+      <T, E, R>(
+        txExecute: (tx: TransactionContextShape) => Effect.Effect<T, E, R>,
+      ) =>
         Effect.runtime<R>().pipe(
           Effect.map((runtime) => Runtime.runPromiseExit(runtime)),
           Effect.flatMap((runPromiseExit) =>
             Effect.async<T, DatabaseError | E, R>((resume) => {
               db.transaction(async (tx: TransactionClient) => {
-                const txWrapper = (fn: (client: TransactionClient) => Promise<any>) =>
+                const txWrapper = (
+                  fn: (client: TransactionClient) => AYS.AYSPromise,
+                ) =>
                   Effect.tryPromise({
                     try: () => fn(tx),
                     catch: (cause) => {
@@ -197,7 +217,9 @@ const makeService = (config: Config) =>
       <A, E, R, Input = never>(
         queryFn: (execute: ExecuteFn, input: Input) => Effect.Effect<A, E, R>,
       ) =>
-      (...args: [Input] extends [never] ? [] : [input: Input]): Effect.Effect<A, E, R> => {
+      (
+        ...args: [Input] extends [never] ? [] : [input: Input]
+      ): Effect.Effect<A, E, R> => {
         const input = args[0] as Input;
         return Effect.serviceOption(TransactionContext).pipe(
           Effect.map(Option.getOrNull),
@@ -217,4 +239,5 @@ type Shape = Effect.Effect.Success<ReturnType<typeof makeService>>;
 
 export class Database extends Effect.Tag("Database")<Database, Shape>() {}
 
-export const layer = (config: Config) => Layer.scoped(Database, makeService(config));
+export const layer = (config: Config) =>
+  Layer.scoped(Database, makeService(config));

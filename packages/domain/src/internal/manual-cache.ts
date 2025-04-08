@@ -1,5 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
 import type * as Clock from "effect/Clock";
 import * as Data from "effect/Data";
 import * as Duration from "effect/Duration";
@@ -148,7 +146,8 @@ export const makeMapKey = <K>(current: K): MapKey<K> => new MapKeyImpl(current);
  * @since 1.0.0
  * @category refinements
  */
-export const isMapKey = (u: unknown): u is MapKey<unknown> => hasProperty(u, MapKeyTypeId);
+export const isMapKey = (u: unknown): u is MapKey<unknown> =>
+  hasProperty(u, MapKeyTypeId);
 
 class MapKeyImpl<out K> implements MapKey<K> {
   public readonly [MapKeyTypeId]: MapKeyTypeId = MapKeyTypeId;
@@ -159,7 +158,10 @@ class MapKeyImpl<out K> implements MapKey<K> {
     return Hash.hash(this.current);
   }
   public [Equal.symbol](that: unknown): boolean {
-    return this === that || (isMapKey(that) && Equal.equals(this.current, that.current));
+    return (
+      this === that ||
+      (isMapKey(that) && Equal.equals(this.current, that.current))
+    );
   }
 }
 
@@ -195,7 +197,11 @@ class KeySetImpl<in out K> implements KeySet<K> {
   }
 
   public add(key: MapKey<K>): void {
-    if (key.previous !== undefined || key.next !== undefined || this.head === key) {
+    if (
+      key.previous !== undefined ||
+      key.next !== undefined ||
+      this.head === key
+    ) {
       this.removeNode(key);
     }
     if (this.tail === undefined) {
@@ -264,7 +270,10 @@ export const makeManualCacheState = <Key, Value>(
  * @since 1.0.0
  * @category constructors
  */
-export const initialManualCacheState = <Key, Value>(): ManualCacheState<Key, Value> =>
+export const initialManualCacheState = <Key, Value>(): ManualCacheState<
+  Key,
+  Value
+> =>
   makeManualCacheState(
     MutableHashMap.empty(),
     makeKeySet(),
@@ -274,7 +283,9 @@ export const initialManualCacheState = <Key, Value>(): ManualCacheState<Key, Val
     MutableRef.make(0),
   );
 
-class ManualCacheImpl<in out Key, in out Value> implements ManualCache<Key, Value> {
+class ManualCacheImpl<in out Key, in out Value>
+  implements ManualCache<Key, Value>
+{
   public readonly [ManualCacheTypeId] = {
     _Key: (_: Key) => _,
     _Value: (_: Value) => _,
@@ -305,7 +316,10 @@ class ManualCacheImpl<in out Key, in out Value> implements ManualCache<Key, Valu
             const currentEntry = Option.getOrUndefined(
               MutableHashMap.get(this.cacheState.map, keyToUpdate.current),
             );
-            if (currentEntry !== undefined && currentEntry.key === keyToUpdate) {
+            if (
+              currentEntry !== undefined &&
+              currentEntry.key === keyToUpdate
+            ) {
               this.cacheState.keys.add(keyToUpdate); // Update LRU order (move to tail)
             }
           }
@@ -334,11 +348,17 @@ class ManualCacheImpl<in out Key, in out Value> implements ManualCache<Key, Valu
   }
 
   private trackHit(): void {
-    MutableRef.set(this.cacheState.hits, MutableRef.get(this.cacheState.hits) + 1);
+    MutableRef.set(
+      this.cacheState.hits,
+      MutableRef.get(this.cacheState.hits) + 1,
+    );
   }
 
   private trackMiss(): void {
-    MutableRef.set(this.cacheState.misses, MutableRef.get(this.cacheState.misses) + 1);
+    MutableRef.set(
+      this.cacheState.misses,
+      MutableRef.get(this.cacheState.misses) + 1,
+    );
   }
 
   private *nonExpiredEntries(clock: Clock.Clock) {
@@ -405,8 +425,10 @@ class ManualCacheImpl<in out Key, in out Value> implements ManualCache<Key, Valu
     this.cacheState.keys.head = undefined;
     this.cacheState.keys.tail = undefined;
     while (
-      MutableQueue.poll(this.cacheState.accesses, MutableQueue.EmptyMutableQueue) !==
-      MutableQueue.EmptyMutableQueue
+      MutableQueue.poll(
+        this.cacheState.accesses,
+        MutableQueue.EmptyMutableQueue,
+      ) !== MutableQueue.EmptyMutableQueue
     ) {
       // draining
     }
@@ -504,9 +526,13 @@ export const make = <Key, Value>(options: {
   const timeToLive = Duration.decode(options.timeToLive);
   const capacity = Math.max(0, options.capacity);
 
-  return Effect.sync(() => new ManualCacheImpl<Key, Value>(capacity, timeToLive)).pipe(
+  return Effect.sync(
+    () => new ManualCacheImpl<Key, Value>(capacity, timeToLive),
+  ).pipe(
     Effect.flatMap((cache) => {
-      const evictionInterval = Duration.millis(Math.max(1000, Duration.toMillis(timeToLive)));
+      const evictionInterval = Duration.millis(
+        Math.max(1000, Duration.toMillis(timeToLive)),
+      );
 
       const periodicEviction = Effect.repeat(
         cache.evictExpired(),

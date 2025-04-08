@@ -35,17 +35,24 @@
     "module": "NodeNext",
     "incremental": true,
     "removeComments": false,
-    "plugins": [{ "name": "@effect/language-service" }],
+    "plugins": [
+      {
+        "name": "@effect/language-service"
+      }
+    ],
     "paths": {
-      "@org/domain": ["./packages/domain/src/index.js"],
-      "@org/domain/*": ["./packages/domain/src/*.js"],
-      "@org/domain/test/*": ["./packages/domain/test/*.js"],
-      "@org/server": ["./packages/server/src/index.js"],
-      "@org/server/*": ["./packages/server/src/*.js"],
-      "@org/server/test/*": ["./packages/server/test/*.js"],
-      "@org/database": ["./packages/database/src/index.js"],
-      "@org/database/*": ["./packages/database/src/*.js"],
-      "@org/database/test/*": ["./packages/database/test/*.js"]
+      "@beep/domain": ["./packages/domain/src/index.js"],
+      "@beep/domain/*": ["./packages/domain/src/*.js"],
+      "@beep/domain/test/*": ["./packages/domain/test/*.js"],
+      "@beep/server": ["./packages/server/src/index.js"],
+      "@beep/server/*": ["./packages/server/src/*.js"],
+      "@beep/server/test/*": ["./packages/server/test/*.js"],
+      "@beep/database": ["./packages/database/src/index.js"],
+      "@beep/database/*": ["./packages/database/src/*.js"],
+      "@beep/database/test/*": ["./packages/database/test/*.js"],
+      "@beep/kernel": ["./packages/kernel/src/index.js"],
+      "@beep/kernel/*": ["./packages/kernel/src/*.js"],
+      "@beep/kernel/test/*": ["./packages/kernel/test/*.js"]
     }
   }
 }

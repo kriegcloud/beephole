@@ -1,0 +1,45 @@
+{
+  "name": "@beep/kernel",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "types": "build/dts/index.d.ts",
+  "exports": {
+    "./*": "./build/esm/*"
+  },
+  "description": "The kernel template",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucas-barake/effect-monorepo.git",
+    "directory": "packages/kernel"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "scripts": {
+    "codegen": "build-utils prepare-v2",
+    "build": "pnpm codegen && tsc -b tsconfig.build.json && pnpm build-esm && pnpm build-cjs && pnpm build-annotate",
+    "build-esm": "tsc -b tsconfig.build.json",
+    "build-cjs": "babel build/esm --plugins @babel/transform-export-namespace-from --plugins @babel/transform-modules-commonjs --out-dir build/cjs --source-maps",
+    "build-annotate": "babel build/esm --plugins annotate-pure-calls --out-dir build/esm --source-maps",
+    "check": "tsc -b tsconfig.json",
+    "test": "vitest",
+    "coverage": "vitest --coverage",
+    "clean": "rm -rf build .tsbuildinfo .turbo node_modules"
+  },
+  "dependencies": {
+    "@effect/platform": "0.80.6",
+    "effect": "3.14.6"
+  },
+  "effect": {
+    "generateExports": {
+      "include": ["**/*.ts"]
+    },
+    "generateIndex": {
+      "include": ["**/*.ts"]
+    }
+  }
+}

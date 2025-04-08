@@ -1,0 +1,72 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+  "files": {
+    "ignore": [
+      "*.css",
+      ".tsup/**",
+      "dist/**",
+      "build/**",
+      ".idea",
+      ".vscode",
+      ".turbo",
+      "public/**"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "formatWithErrors": true
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "a11y": {
+        "useAriaPropsForRole": "off"
+      },
+      "complexity": {
+        "noThisInStatic": "off",
+        "useLiteralKeys": "off",
+        "noForEach": "off",
+        "noStaticOnlyClass": "off"
+      },
+      "recommended": true,
+      "correctness": {
+        "noSwitchDeclarations": "off",
+        "noUndeclaredVariables": "off",
+        "useExhaustiveDependencies": "off"
+      },
+      "performance": {
+        "noDelete": "off",
+        "noAccumulatingSpread": "off"
+      },
+      "suspicious": {
+        "noRedeclare": "off",
+        "noConfusingVoidType": "off",
+        "noShadowRestrictedNames": "off",
+        "noAssignInExpressions": "off",
+        "noArrayIndexKey": "off",
+        "noExplicitAny": "warn",
+        "noThenProperty": "off"
+      },
+      "style": {
+        "useImportType": "off",
+        "noUnusedTemplateLiteral": "off",
+        "noParameterAssign": "off",
+        "noCommaOperator": "off"
+      }
+    }
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  }
+}

@@ -1,38 +1,48 @@
 import * as HttpApiEndpoint from "@effect/platform/HttpApiEndpoint";
 import * as HttpApiGroup from "@effect/platform/HttpApiGroup";
 import * as HttpApiSchema from "@effect/platform/HttpApiSchema";
-import * as Schema from "effect/Schema";
+import * as S from "effect/Schema";
 import { TodoId } from "../EntityIds.js";
 
-export class TodoNotFoundError extends Schema.TaggedError<TodoNotFoundError>("TodoNotFoundError")(
+export class TodoNotFoundError extends S.TaggedError<TodoNotFoundError>(
+  "TodoNotFoundError",
+)(
   "TodoNotFoundError",
   {
-    message: Schema.String,
+    message: S.String,
   },
   HttpApiSchema.annotations({
     status: 404,
   }),
 ) {}
 
-export class Todo extends Schema.Class<Todo>("Todo")({
+export class Todo extends S.Class<Todo>("Todo")({
   id: TodoId,
-  title: Schema.Trim.pipe(Schema.nonEmptyString()),
-  completed: Schema.Boolean,
+  title: S.Trim.pipe(S.nonEmptyString()),
+  completed: S.Boolean,
 }) {}
 
-export class CreateTodoPayload extends Schema.Class<CreateTodoPayload>("CreateTodoPayload")({
+export class CreateTodoPayload extends S.Class<CreateTodoPayload>(
+  "CreateTodoPayload",
+)({
   title: Todo.fields.title,
 }) {}
 
-export class UpdateTodoPayload extends Schema.Class<UpdateTodoPayload>("UpdateTodoPayload")({
+export class UpdateTodoPayload extends S.Class<UpdateTodoPayload>(
+  "UpdateTodoPayload",
+)({
   id: TodoId,
   title: Todo.fields.title,
   completed: Todo.fields.completed,
 }) {}
 
 export class Group extends HttpApiGroup.make("todos")
-  .add(HttpApiEndpoint.get("get", "/").addSuccess(Schema.Array(Todo)))
-  .add(HttpApiEndpoint.post("create", "/").addSuccess(Todo).setPayload(CreateTodoPayload))
+  .add(HttpApiEndpoint.get("get", "/").addSuccess(S.Array(Todo)))
+  .add(
+    HttpApiEndpoint.post("create", "/")
+      .addSuccess(Todo)
+      .setPayload(CreateTodoPayload),
+  )
   .add(
     HttpApiEndpoint.put("update", "/:id")
       .addError(TodoNotFoundError)
@@ -42,7 +52,7 @@ export class Group extends HttpApiGroup.make("todos")
   .add(
     HttpApiEndpoint.del("delete", "/:id")
       .addError(TodoNotFoundError)
-      .addSuccess(Schema.Void)
+      .addSuccess(S.Void)
       .setPayload(TodoId),
   )
   .prefix("/todos") {}

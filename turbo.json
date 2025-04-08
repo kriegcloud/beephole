@@ -1,0 +1,69 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "codegen": {
+      "dependsOn": [
+        "^codegen"
+      ],
+      "cache": false,
+      "persistent": false
+    },
+    "test": {
+      "dependsOn": [
+        "^test"
+      ],
+      "outputs": [
+        "coverage/**"
+      ]
+    },
+    "coverage": {
+      "dependsOn": [
+        "^coverage"
+      ],
+      "outputs": [
+        "coverage/**"
+      ]
+    },
+    "lint": {
+      "dependsOn": [
+        "^lint"
+      ]
+    },
+    "lint:fix": {
+      "dependsOn": [
+        "^lint:fix"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        "build/**",
+        ".next/**",
+        "!.next/cache/**",
+        "next-env.d.ts",
+        ".expo/**",
+        ".output/**",
+        ".vercel/output/**"
+      ]
+    },
+    "check": {},
+    "dev": {
+      "dependsOn": [
+        "^build"
+      ],
+      "persistent": false,
+      "cache": false
+    },
+    "clean": {
+      "cache": false,
+      "persistent": false
+    },
+    "//#clean": {
+      "cache": false
+    }
+  }
+}

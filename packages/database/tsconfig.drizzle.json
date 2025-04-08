@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": [
+    "drizzle.config.ts"
+  ],
+  "compilerOptions": {
+    "types": [
+      "node"
+    ],
+    "rootDir": ".",
+    "outDir": "build"
+  },
+  "references": [
+    {
+      "path": "../kernel"
+    }
+  ]
+}

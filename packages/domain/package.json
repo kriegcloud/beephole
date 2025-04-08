@@ -1,7 +1,13 @@
 {
-  "name": "@org/domain",
+  "name": "@beep/domain",
   "version": "0.0.0",
   "type": "module",
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "types": "build/dts/index.d.ts",
+  "exports": {
+    "./*": "./build/esm/*"
+  },
   "license": "MIT",
   "description": "The domain template",
   "repository": {
@@ -15,7 +21,7 @@
   },
   "scripts": {
     "codegen": "build-utils prepare-v2",
-    "build": "tsc -b tsconfig.build.json",
+    "build": "pnpm codegen && tsc -b tsconfig.build.json && pnpm build-esm && pnpm build-cjs && pnpm build-annotate",
     "build-esm": "tsc -b tsconfig.build.json",
     "build-cjs": "babel build/esm --plugins @babel/transform-export-namespace-from --plugins @babel/transform-modules-commonjs --out-dir build/cjs --source-maps",
     "build-annotate": "babel build/esm --plugins annotate-pure-calls --out-dir build/esm --source-maps",
@@ -24,19 +30,16 @@
     "coverage": "vitest --coverage"
   },
   "dependencies": {
+    "@beep/kernel": "workspace:^",
     "@effect/platform": "0.80.6",
     "effect": "3.14.6"
   },
   "effect": {
     "generateExports": {
-      "include": [
-        "**/*.ts"
-      ]
+      "include": ["**/*.ts"]
     },
     "generateIndex": {
-      "include": [
-        "**/*.ts"
-      ]
+      "include": ["**/*.ts"]
     }
   }
 }

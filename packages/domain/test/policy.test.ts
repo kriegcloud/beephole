@@ -7,14 +7,17 @@ import * as CustomHttpApiError from "../src/CustomHttpApiError.js";
 import { UserId } from "../src/EntityIds.js";
 import * as Policy from "../src/Policy.js";
 
-const mockUser = (permissions: ReadonlyArray<Policy.Permission>): Policy.CurrentUser["Type"] => ({
+const mockUser = (
+  permissions: ReadonlyArray<Policy.Permission>,
+): Policy.CurrentUser["Type"] => ({
   sessionId: "test-session",
   userId: UserId.make("test-user"),
   permissions: new Set(permissions),
 });
 
-const provideCurrentUser = (permissions: ReadonlyArray<Policy.Permission> = []) =>
-  Layer.succeed(Policy.CurrentUser, mockUser(permissions));
+const provideCurrentUser = (
+  permissions: ReadonlyArray<Policy.Permission> = [],
+) => Layer.succeed(Policy.CurrentUser, mockUser(permissions));
 
 const succeedEffect = Effect.succeed("allowed");
 
@@ -52,14 +55,18 @@ describe("Policy Module", () => {
           if (Exit.isFailure(exit)) {
             const error = Cause.squash(exit.cause);
             expect(error).toBeInstanceOf(CustomHttpApiError.Forbidden);
-            expect((error as CustomHttpApiError.Forbidden).message).toBe(message);
+            expect((error as CustomHttpApiError.Forbidden).message).toBe(
+              message,
+            );
           }
         }).pipe(Effect.provide(provideCurrentUser())),
     );
 
     it.effect("should have access to CurrentUser", () =>
       Effect.gen(function* () {
-        const p = Policy.policy((user) => Effect.succeed(user.userId === "test-user"));
+        const p = Policy.policy((user) =>
+          Effect.succeed(user.userId === "test-user"),
+        );
         const exit = yield* Effect.exit(p);
         expect(Exit.isSuccess(exit)).toBe(true);
       }).pipe(Effect.provide(provideCurrentUser())),
@@ -94,14 +101,18 @@ describe("Policy Module", () => {
 
     it.effect("should run the effect if the policy passes", () =>
       Effect.gen(function* () {
-        const result = yield* succeedEffect.pipe(Policy.withPolicy(passingPolicy));
+        const result = yield* succeedEffect.pipe(
+          Policy.withPolicy(passingPolicy),
+        );
         expect(result).toBe("allowed");
       }).pipe(Effect.provide(provideCurrentUser())),
     );
 
     it.effect("should fail the effect if the policy fails", () =>
       Effect.gen(function* () {
-        const exit = yield* Effect.exit(succeedEffect.pipe(Policy.withPolicy(failingPolicy)));
+        const exit = yield* Effect.exit(
+          succeedEffect.pipe(Policy.withPolicy(failingPolicy)),
+        );
         expect(Exit.isFailure(exit)).toBe(true);
         if (Exit.isFailure(exit)) {
           const error = Cause.squash(exit.cause);
@@ -118,7 +129,9 @@ describe("Policy Module", () => {
           return "mutated";
         });
 
-        const exit = yield* Effect.exit(mutationEffect.pipe(Policy.withPolicy(failingPolicy)));
+        const exit = yield* Effect.exit(
+          mutationEffect.pipe(Policy.withPolicy(failingPolicy)),
+        );
 
         expect(Exit.isFailure(exit)).toBe(true);
         if (Exit.isFailure(exit)) {
@@ -230,29 +243,43 @@ describe("Policy Module", () => {
     const canRead = Policy.permission("__test:read");
     const canManage = Policy.permission("__test:manage");
     const canDelete = Policy.permission("__test:delete");
-    const isTestUser = Policy.policy((user) => Effect.succeed(user.userId === "test-user"));
+    const isTestUser = Policy.policy((user) =>
+      Effect.succeed(user.userId === "test-user"),
+    );
     const alwaysFalse = Policy.policy(() => Effect.succeed(false));
 
     // Rule: (CanRead AND CanManage) OR (CanDelete) OR (IsTestUser)
-    const complexPolicy = Policy.any(Policy.all(canRead, canManage), canDelete, isTestUser);
+    const complexPolicy = Policy.any(
+      Policy.all(canRead, canManage),
+      canDelete,
+      isTestUser,
+    );
 
     it.effect("should succeed if 'all' part passes", () =>
       Effect.gen(function* () {
-        const exit = yield* Effect.exit(succeedEffect.pipe(Policy.withPolicy(complexPolicy)));
+        const exit = yield* Effect.exit(
+          succeedEffect.pipe(Policy.withPolicy(complexPolicy)),
+        );
         expect(Exit.isSuccess(exit)).toBe(true);
-      }).pipe(Effect.provide(provideCurrentUser(["__test:read", "__test:manage"]))),
+      }).pipe(
+        Effect.provide(provideCurrentUser(["__test:read", "__test:manage"])),
+      ),
     );
 
     it.effect("should succeed if 'delete' part passes", () =>
       Effect.gen(function* () {
-        const exit = yield* Effect.exit(succeedEffect.pipe(Policy.withPolicy(complexPolicy)));
+        const exit = yield* Effect.exit(
+          succeedEffect.pipe(Policy.withPolicy(complexPolicy)),
+        );
         expect(Exit.isSuccess(exit)).toBe(true);
       }).pipe(Effect.provide(provideCurrentUser(["__test:delete"]))),
     );
 
     it.effect("should succeed if 'isTestUser' part passes", () =>
       Effect.gen(function* () {
-        const exit = yield* Effect.exit(succeedEffect.pipe(Policy.withPolicy(complexPolicy)));
+        const exit = yield* Effect.exit(
+          succeedEffect.pipe(Policy.withPolicy(complexPolicy)),
+        );
         expect(Exit.isSuccess(exit)).toBe(true);
       }).pipe(Effect.provide(provideCurrentUser())),
     );
@@ -261,7 +288,9 @@ describe("Policy Module", () => {
       Effect.gen(function* () {
         // Rule: (CanRead AND AlwaysFalse) OR (CanDelete)
         const policy = Policy.any(Policy.all(canRead, alwaysFalse), canDelete);
-        const exit = yield* Effect.exit(succeedEffect.pipe(Policy.withPolicy(policy)));
+        const exit = yield* Effect.exit(
+          succeedEffect.pipe(Policy.withPolicy(policy)),
+        );
         expect(Exit.isFailure(exit)).toBe(true);
         if (Exit.isFailure(exit)) {
           const error = Cause.squash(exit.cause);
@@ -274,7 +303,9 @@ describe("Policy Module", () => {
       Effect.gen(function* () {
         const canAdmin = Policy.all(canRead, canManage);
         const targetUserId = UserId.make("other-user");
-        const isSelf = Policy.policy((user) => Effect.succeed(user.userId === targetUserId));
+        const isSelf = Policy.policy((user) =>
+          Effect.succeed(user.userId === targetUserId),
+        );
 
         const accessPolicy = Policy.any(canAdmin, isSelf);
 
@@ -282,7 +313,9 @@ describe("Policy Module", () => {
         const exitAdmin = yield* Effect.exit(
           succeedEffect.pipe(
             Policy.withPolicy(accessPolicy),
-            Effect.provide(provideCurrentUser(["__test:read", "__test:manage"])),
+            Effect.provide(
+              provideCurrentUser(["__test:read", "__test:manage"]),
+            ),
           ),
         );
         expect(Exit.isSuccess(exitAdmin)).toBe(true);

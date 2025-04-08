@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
 import type * as Duration from "effect/Duration";
 import type * as Effect from "effect/Effect";
 import type * as Option from "effect/Option";
@@ -19,7 +18,8 @@ import * as internal from "./internal/manual-cache.js";
  * @since 1.0.0
  * @category models
  */
-export interface ManualCache<in out Key, in out Value> extends ManualCache.Variance<Key, Value> {
+export interface ManualCache<in out Key, in out Value>
+  extends ManualCache.Variance<Key, Value> {
   /**
    * Retrieves the value associated with the specified key if it exists and is not expired.
    * Otherwise returns Option.none. Updates LRU status on hit.
@@ -130,4 +130,5 @@ export interface EntryStats {
 export const make = <Key, Value = never>(options: {
   readonly capacity: number;
   readonly timeToLive: Duration.DurationInput;
-}): Effect.Effect<ManualCache<Key, Value>, never, Scope.Scope> => internal.make(options);
+}): Effect.Effect<ManualCache<Key, Value>, never, Scope.Scope> =>
+  internal.make(options);

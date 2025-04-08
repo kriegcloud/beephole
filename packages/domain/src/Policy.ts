@@ -1,10 +1,10 @@
 import * as HttpApiMiddleware from "@effect/platform/HttpApiMiddleware";
-import { type NonEmptyReadonlyArray } from "effect/Array";
+import type { NonEmptyReadonlyArray } from "effect/Array";
 import * as Context from "effect/Context";
 import * as Effect from "effect/Effect";
-import * as Schema from "effect/Schema";
+import * as S from "effect/Schema";
 import * as CustomHttpApiError from "./CustomHttpApiError.js";
-import { type UserId } from "./EntityIds.js";
+import type { UserId } from "./EntityIds.js";
 import * as internal from "./internal/policy.js";
 
 // ==========================================
@@ -15,7 +15,7 @@ const Permissions = internal.makePermissions({
   __test: ["read", "manage", "delete"],
 } as const);
 
-export const Permission = Schema.Literal(...Permissions).annotations({
+export const Permission = S.Literal(...Permissions).annotations({
   identifier: "Permission",
 });
 export type Permission = typeof Permission.Type;
@@ -88,7 +88,9 @@ export const withPolicy =
  * Composes multiple policies with AND semantics - all policies must pass.
  * Returns a new policy that succeeds only if all the given policies succeed.
  */
-export const all = <E, R>(...policies: NonEmptyReadonlyArray<Policy<E, R>>): Policy<E, R> =>
+export const all = <E, R>(
+  ...policies: NonEmptyReadonlyArray<Policy<E, R>>
+): Policy<E, R> =>
   Effect.all(policies, {
     concurrency: 1,
     discard: true,
@@ -98,8 +100,9 @@ export const all = <E, R>(...policies: NonEmptyReadonlyArray<Policy<E, R>>): Pol
  * Composes multiple policies with OR semantics - at least one policy must pass.
  * Returns a new policy that succeeds if any of the given policies succeed.
  */
-export const any = <E, R>(...policies: NonEmptyReadonlyArray<Policy<E, R>>): Policy<E, R> =>
-  Effect.firstSuccessOf(policies);
+export const any = <E, R>(
+  ...policies: NonEmptyReadonlyArray<Policy<E, R>>
+): Policy<E, R> => Effect.firstSuccessOf(policies);
 
 /**
  * Creates a policy that checks if the current user has a specific permission.

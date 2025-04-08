@@ -1,0 +1,38 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": [
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    ".",
+    "./.next/types/**/*.ts",
+    ".next/types/**/*.ts"
+  ],
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "exactOptionalPropertyTypes": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@beep/domain": ["../../packages/domain/src/*"],
+      "@beep/kernel": ["../../packages/kernel/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "public/__ENV.js", ".next"]
+}

@@ -1,6 +1,6 @@
-import { type LiveManagedRuntime } from "../live-layer";
 import { constVoid } from "effect/Function";
 import React from "react";
+import { type LiveManagedRuntime } from "../live-layer";
 import { RuntimeContext } from "./runtime-context";
 
 export const RuntimeProvider: React.FC<{
@@ -20,5 +20,9 @@ export const RuntimeProvider: React.FC<{
     };
   }, [runtime]);
 
-  return <RuntimeContext.Provider value={runtime}>{children}</RuntimeContext.Provider>;
+  return (
+    <RuntimeContext.Provider value={runtime}>
+      {children}
+    </RuntimeContext.Provider>
+  );
 };

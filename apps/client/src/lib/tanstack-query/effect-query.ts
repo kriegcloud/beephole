@@ -1,21 +1,19 @@
-import { type LiveRuntimeContext } from "../../layers/live-layer";
-import { useRuntime } from "../../layers/runtime/use-runtime";
 import {
   type GetNextPageParamFunction,
   type GetPreviousPageParamFunction,
   type InfiniteData,
   type QueryFunction,
   type QueryFunctionContext,
-  skipToken,
-  useInfiniteQuery,
   type UseInfiniteQueryOptions,
   type UseInfiniteQueryResult,
-  useMutation,
   type UseMutationOptions,
   type UseMutationResult,
-  useQuery,
   type UseQueryOptions,
   type UseQueryResult,
+  skipToken,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
 } from "@tanstack/react-query";
 import * as Cause from "effect/Cause";
 import * as Data from "effect/Data";
@@ -24,6 +22,8 @@ import * as Effect from "effect/Effect";
 import * as Exit from "effect/Exit";
 import * as Predicate from "effect/Predicate";
 import * as React from "react";
+import { type LiveRuntimeContext } from "../../layers/live-layer";
+import { useRuntime } from "../../layers/runtime/use-runtime";
 
 export class QueryDefect extends Data.TaggedError("QueryDefect")<{
   cause: unknown;
@@ -82,7 +82,8 @@ const useRunner = <A, E extends EffectfulError, R extends LiveRuntimeContext>({
                   const message = tagHandler(error as any);
                   console.error(message);
                   return;
-                }  if (orElse !== false) {
+                }
+                if (orElse !== false) {
                   if (orElse === "extractMessage" && hasStringMessage(error)) {
                     console.error(error.message);
                   } else if (typeof orElse === "string") {
@@ -113,7 +114,9 @@ const useRunner = <A, E extends EffectfulError, R extends LiveRuntimeContext>({
 
                 if (toastifyDefects !== false) {
                   const defectMessage =
-                    typeof toastifyDefects === "string" ? toastifyDefects : DEFAULT_DEFECT_MESSAGE;
+                    typeof toastifyDefects === "string"
+                      ? toastifyDefects
+                      : DEFAULT_DEFECT_MESSAGE;
                   console.error(defectMessage);
                 }
 
@@ -140,7 +143,13 @@ type EffectfulMutationOptions<
   R extends LiveRuntimeContext,
 > = Omit<
   UseMutationOptions<A, E | QueryDefect, Variables>,
-  "mutationFn" | "onSuccess" | "onError" | "onSettled" | "onMutate" | "retry" | "retryDelay"
+  | "mutationFn"
+  | "onSuccess"
+  | "onError"
+  | "onSettled"
+  | "onMutate"
+  | "retry"
+  | "retryDelay"
 > & {
   mutationKey: QueryKey;
   mutationFn: (variables: Variables) => Effect.Effect<A, E, R>;
@@ -182,7 +191,9 @@ type EffectfulQueryFunction<
   R extends LiveRuntimeContext,
   QueryKeyType extends QueryKey = QueryKey,
   PageParam = never,
-> = (context: QueryFunctionContext<QueryKeyType, PageParam>) => Effect.Effect<A, E, R>;
+> = (
+  context: QueryFunctionContext<QueryKeyType, PageParam>,
+) => Effect.Effect<A, E, R>;
 
 type EffectfulQueryOptions<
   A,
@@ -195,7 +206,9 @@ type EffectfulQueryOptions<
   "queryKey" | "queryFn" | "retry" | "retryDelay" | "staleTime" | "gcTime"
 > & {
   queryKey: QueryKeyType;
-  queryFn: EffectfulQueryFunction<A, E, R, QueryKeyType, PageParam> | typeof skipToken;
+  queryFn:
+    | EffectfulQueryFunction<A, E, R, QueryKeyType, PageParam>
+    | typeof skipToken;
   staleTime?: Duration.DurationInput;
   gcTime?: Duration.DurationInput;
 } & UseRunnerOpts<A, E>;
@@ -209,13 +222,18 @@ export function useEffectQuery<
   gcTime,
   staleTime,
   ...options
-}: EffectfulQueryOptions<A, E, R, QueryKeyType>): UseQueryResult<A, E | QueryDefect> {
+}: EffectfulQueryOptions<A, E, R, QueryKeyType>): UseQueryResult<
+  A,
+  E | QueryDefect
+> {
   const effectRunner = useRunner<A, E, R>(options);
   const [spanName] = options.queryKey;
 
   const queryFn: QueryFunction<A, QueryKeyType> = React.useCallback(
     (context: QueryFunctionContext<QueryKeyType>) => {
-      const effect = (options.queryFn as EffectfulQueryFunction<A, E, R, QueryKeyType>)(context);
+      const effect = (
+        options.queryFn as EffectfulQueryFunction<A, E, R, QueryKeyType>
+      )(context);
       return effect.pipe(effectRunner(spanName));
     },
     [effectRunner, spanName, options],
@@ -230,7 +248,10 @@ export function useEffectQuery<
   });
 }
 
-export type UseQueryResultSuccess<TData> = UseQueryResult<TData, unknown>["data"];
+export type UseQueryResultSuccess<TData> = UseQueryResult<
+  TData,
+  unknown
+>["data"];
 
 export type EffectfulInfiniteQueryOptions<
   A,
@@ -250,7 +271,9 @@ export type EffectfulInfiniteQueryOptions<
   "queryFn" | "retry" | "retryDelay" | "staleTime" | "gcTime"
 > & {
   queryKey: QueryKeyType;
-  queryFn: EffectfulQueryFunction<A, E, R, QueryKeyType, PageParam> | typeof skipToken;
+  queryFn:
+    | EffectfulQueryFunction<A, E, R, QueryKeyType, PageParam>
+    | typeof skipToken;
   getNextPageParam: GetNextPageParamFunction<PageParam, A>;
   getPreviousPageParam?: GetPreviousPageParamFunction<PageParam, A>;
   initialPageParam: PageParam;
@@ -277,24 +300,39 @@ export function useEffectInfiniteQuery<
   queryKey,
   staleTime,
   ...options
-}: EffectfulInfiniteQueryOptions<A, E, R, QueryKeyType, PageParam>): UseInfiniteQueryResult<
-  InfiniteData<A, PageParam>,
-  E | QueryDefect
-> {
+}: EffectfulInfiniteQueryOptions<
+  A,
+  E,
+  R,
+  QueryKeyType,
+  PageParam
+>): UseInfiniteQueryResult<InfiniteData<A, PageParam>, E | QueryDefect> {
   const effectRunner = useRunner<A, E, R>(options);
   const [spanName] = queryKey;
 
   const queryFn: QueryFunction<A, QueryKeyType, PageParam> = React.useCallback(
     (context: QueryFunctionContext<QueryKeyType, PageParam>) => {
-      const effect = (effectfulQueryFn as EffectfulQueryFunction<A, E, R, QueryKeyType, PageParam>)(
-        context,
-      );
+      const effect = (
+        effectfulQueryFn as EffectfulQueryFunction<
+          A,
+          E,
+          R,
+          QueryKeyType,
+          PageParam
+        >
+      )(context);
       return effect.pipe(effectRunner(spanName));
     },
     [effectRunner, spanName, effectfulQueryFn],
   );
 
-  return useInfiniteQuery<A, E | QueryDefect, InfiniteData<A, PageParam>, QueryKeyType, PageParam>({
+  return useInfiniteQuery<
+    A,
+    E | QueryDefect,
+    InfiniteData<A, PageParam>,
+    QueryKeyType,
+    PageParam
+  >({
     ...options,
     queryKey,
     queryFn: effectfulQueryFn === skipToken ? skipToken : queryFn,

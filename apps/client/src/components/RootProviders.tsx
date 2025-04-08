@@ -1,4 +1,7 @@
-import { QueryClientProvider, QueryClient as TanstackQueryClient } from "@tanstack/react-query";
+import {
+  QueryClientProvider,
+  QueryClient as TanstackQueryClient,
+} from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import * as Duration from "effect/Duration";
 import * as Layer from "effect/Layer";
@@ -15,7 +18,7 @@ import { RuntimeProvider } from "../layers/runtime/runtime-provider";
 
 type InnerProvidersProps = {
   children: React.ReactNode;
-}
+};
 
 const InnerProviders: React.FC<InnerProvidersProps> = ({ children }) => {
   const queryClient = React.useMemo(
@@ -43,7 +46,11 @@ const InnerProviders: React.FC<InnerProvidersProps> = ({ children }) => {
           NetworkMonitor.Default,
           ApiClient.Default,
           QueryClient.make(queryClient),
-        ).pipe(Layer.provide(Logger.pretty)) as Layer.Layer<ApiClient | NetworkMonitor | QueryClient, never, never>,
+        ).pipe(Layer.provide(Logger.pretty)) as Layer.Layer<
+          ApiClient | NetworkMonitor | QueryClient,
+          never,
+          never
+        >,
       ),
     [queryClient],
   );
@@ -52,9 +59,7 @@ const InnerProviders: React.FC<InnerProvidersProps> = ({ children }) => {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
 
-      <RuntimeProvider runtime={runtime}>
-        {children}
-      </RuntimeProvider>
+      <RuntimeProvider runtime={runtime}>{children}</RuntimeProvider>
     </QueryClientProvider>
   );
 };
@@ -62,15 +67,16 @@ const InnerProviders: React.FC<InnerProvidersProps> = ({ children }) => {
 type RootProvidersProps = {
   colorScheme: "light" | "dark";
   children: React.ReactNode;
-}
+};
 
-export const RootProviders: React.FC<RootProvidersProps> = ({ children, colorScheme}) => {
+export const RootProviders: React.FC<RootProvidersProps> = ({
+  children,
+  colorScheme,
+}) => {
   return (
     <ColorSchemeProvider colorScheme={colorScheme}>
       {/*<Toaster />*/}
-      <InnerProviders >
-        {children}
-      </InnerProviders>
+      <InnerProviders>{children}</InnerProviders>
     </ColorSchemeProvider>
   );
 };

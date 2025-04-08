@@ -1,55 +1,70 @@
-import { formOptions, type FormValidateOrFn, type FormValidators } from "@tanstack/react-form";
+import {
+  type FormValidateOrFn,
+  type FormValidators,
+  formOptions,
+} from "@tanstack/react-form";
 import * as Array from "effect/Array";
 import * as Either from "effect/Either";
 import { pipe } from "effect/Function";
 import { ArrayFormatter } from "effect/ParseResult";
 import * as Schema from "effect/Schema";
 
-type BuildTuple<N extends number, Acc extends ReadonlyArray<unknown> = []> = Acc["length"] extends N
-  ? Acc
-  : BuildTuple<N, [...Acc, unknown]>;
+type BuildTuple<
+  N extends number,
+  Acc extends ReadonlyArray<unknown> = [],
+> = Acc["length"] extends N ? Acc : BuildTuple<N, [...Acc, unknown]>;
 
 // Computes N - 1 for a number type N.
-type Prev<N extends number> = BuildTuple<N> extends [unknown, ...infer Rest] ? Rest["length"] : 0;
+type Prev<N extends number> = BuildTuple<N> extends [unknown, ...infer Rest]
+  ? Rest["length"]
+  : 0;
 
 // Recursive type to generate dot-notation paths for a type `Data` up to a depth `Depth`.
-type PathsLimited<Data, Path extends string = "", Depth extends number = 3> =
-  // Base case: Depth limit reached
-  Depth extends 0
-    ? `${Path}${Path extends "" ? "" : "."}${string}` | Path // Allow the current path or any string suffix.
-    : Data extends ReadonlyArray<infer Element>
-      ? // For arrays: Generate paths for numeric indices and recurse on the element type.
+type PathsLimited<
+  Data,
+  Path extends string = "",
+  Depth extends number = 3,
+> = Depth extends 0 // Base case: Depth limit reached
+  ? `${Path}${Path extends "" ? "" : "."}${string}` | Path // Allow the current path or any string suffix.
+  : Data extends ReadonlyArray<infer Element>
+    ? // For arrays: Generate paths for numeric indices and recurse on the element type.
         | `${Path}${Path extends "" ? "" : "."}${number}`
-          | PathsLimited<Element, `${Path}${Path extends "" ? "" : "."}${number}`, Prev<Depth>>
-      : Data extends object
-        ? // For objects: Generate paths for keys and recurse on property types.
-          {
-            [Key in keyof Data]-?: Key extends string | number
-              ?
-                  | `${Path}${Path extends "" ? "" : "."}${Key}`
-                  | PathsLimited<
-                      Data[Key],
-                      `${Path}${Path extends "" ? "" : "."}${Key}`,
-                      Prev<Depth>
-                    >
-              : never;
-          }[keyof Data]
-        : // Primitive/leaf node: Return the accumulated path.
-          Path;
+        | PathsLimited<
+            Element,
+            `${Path}${Path extends "" ? "" : "."}${number}`,
+            Prev<Depth>
+          >
+    : Data extends object
+      ? // For objects: Generate paths for keys and recurse on property types.
+        {
+          [Key in keyof Data]-?: Key extends string | number
+            ?
+                | `${Path}${Path extends "" ? "" : "."}${Key}`
+                | PathsLimited<
+                    Data[Key],
+                    `${Path}${Path extends "" ? "" : "."}${Key}`,
+                    Prev<Depth>
+                  >
+            : never;
+        }[keyof Data]
+      : // Primitive/leaf node: Return the accumulated path.
+        Path;
 
 export type Paths<Data> = PathsLimited<Data>;
 
 type RootErrorKey = "";
-type SchemaValidatorResult<SchemaInput extends Record<PropertyKey, any>> = Partial<
-  Record<Paths<SchemaInput> | RootErrorKey, string>
-> | null;
+type SchemaValidatorResult<SchemaInput extends Record<PropertyKey, any>> =
+  Partial<Record<Paths<SchemaInput> | RootErrorKey, string>> | null;
 
-type SchemaValidatorFn<SchemaInput extends Record<PropertyKey, any>> = (submission: {
-  value: SchemaInput;
-}) => SchemaValidatorResult<SchemaInput>;
+type SchemaValidatorFn<SchemaInput extends Record<PropertyKey, any>> =
+  (submission: {
+    value: SchemaInput;
+  }) => SchemaValidatorResult<SchemaInput>;
 
 export const validateWithSchema =
-  <A, I extends Record<PropertyKey, any>>(schema: Schema.Schema<A, I>): SchemaValidatorFn<I> =>
+  <A, I extends Record<PropertyKey, any>>(
+    schema: Schema.Schema<A, I>,
+  ): SchemaValidatorFn<I> =>
   (submission: { value: I }): SchemaValidatorResult<I> =>
     Schema.decodeEither(schema, { errors: "all", onExcessProperty: "ignore" })(
       submission.value,
@@ -67,7 +82,8 @@ export const validateWithSchema =
             }
             return acc;
           }),
-          (acc): SchemaValidatorResult<I> => (Object.keys(acc).length > 0 ? acc : null),
+          (acc): SchemaValidatorResult<I> =>
+            Object.keys(acc).length > 0 ? acc : null,
         ),
       ),
       Either.flip,
@@ -102,7 +118,11 @@ export const makeFormOptions = <
 }) => {
   const specificValidatorFn = validateWithSchema(opts.schema);
 
-  const validators = ((): SpecificValidators<SchemaI, ValidatorKey, typeof specificValidatorFn> => {
+  const validators = ((): SpecificValidators<
+    SchemaI,
+    ValidatorKey,
+    typeof specificValidatorFn
+  > => {
     switch (opts.validator) {
       case "onSubmit":
         return { onSubmit: specificValidatorFn } as SpecificValidators<

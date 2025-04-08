@@ -1,1 +1,435 @@
-globalThis.__RSC_MANIFEST=(globalThis.__RSC_MANIFEST||{});globalThis.__RSC_MANIFEST["/page"]={"moduleLoading":{"prefix":"/_next/","crossOrigin":null},"ssrModuleMapping":{"470":{"*":{"id":"7641","name":"*","chunks":[],"async":false}},"1550":{"*":{"id":"9314","name":"*","chunks":[],"async":false}},"2403":{"*":{"id":"4291","name":"*","chunks":[],"async":false}},"2496":{"*":{"id":"3838","name":"*","chunks":[],"async":false}},"3602":{"*":{"id":"8552","name":"*","chunks":[],"async":false}},"3854":{"*":{"id":"1896","name":"*","chunks":[],"async":false}},"5057":{"*":{"id":"7011","name":"*","chunks":[],"async":false}},"7758":{"*":{"id":"4218","name":"*","chunks":[],"async":false}},"8156":{"*":{"id":"8498","name":"*","chunks":[],"async":false}},"8245":{"*":{"id":"4191","name":"*","chunks":[],"async":false}},"9239":{"*":{"id":"2499","name":"*","chunks":[],"async":false}}},"edgeSSRModuleMapping":{},"clientModules":{"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js":{"id":9239,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/client-page.js":{"id":9239,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js":{"id":8245,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/client-segment.js":{"id":8245,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js":{"id":5057,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/error-boundary.js":{"id":5057,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js":{"id":1550,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/http-access-fallback/error-boundary.js":{"id":1550,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js":{"id":470,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/layout-router.js":{"id":470,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js":{"id":7758,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/metadata/async-metadata.js":{"id":7758,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js":{"id":3854,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/metadata/metadata-boundary.js":{"id":3854,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js":{"id":8156,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/render-from-template-context.js":{"id":8156,"name":"*","chunks":[],"async":false},"/home/elpresidank/YeeBois/projects/beephole/apps/client/src/components/App.tsx":{"id":3602,"name":"*","chunks":["177","static/chunks/app/layout-5f62db50780dce20.js"],"async":false},"/home/elpresidank/YeeBois/projects/beephole/apps/client/src/components/ColorSchemeProvider.tsx":{"id":2496,"name":"*","chunks":["177","static/chunks/app/layout-5f62db50780dce20.js"],"async":false},"/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/@mui+material-pigment-css@7.0.1_@emotion+react@11.14.0_@types+react@19.1.0_react@19.1.0_62cc53a836728d1ce19d47fed62be1a9/node_modules/@mui/material-pigment-css/styles.css":{"id":7322,"name":"*","chunks":["177","static/chunks/app/layout-5f62db50780dce20.js"],"async":false},"/home/elpresidank/YeeBois/projects/beephole/apps/client/src/app/page.tsx":{"id":2403,"name":"*","chunks":["510","static/chunks/510-fc1d3969d67b4311.js","974","static/chunks/app/page-acd04a7d8597c983.js"],"async":false}},"entryCSSFiles":{"/home/elpresidank/YeeBois/projects/beephole/apps/client/src/":[],"/home/elpresidank/YeeBois/projects/beephole/apps/client/src/app/layout":[{"inlined":false,"path":"static/css/5ad5165dfe94e8d8.css"}],"/home/elpresidank/YeeBois/projects/beephole/apps/client/src/app/page":[{"inlined":false,"path":"static/css/3d7564cc15c260c4.css"}]},"rscModuleMapping":{"470":{"*":{"id":"8928","name":"*","chunks":[],"async":false}},"1550":{"*":{"id":"128","name":"*","chunks":[],"async":false}},"2403":{"*":{"id":"6823","name":"*","chunks":[],"async":false}},"2496":{"*":{"id":"9064","name":"*","chunks":[],"async":false}},"3602":{"*":{"id":"4706","name":"*","chunks":[],"async":false}},"3854":{"*":{"id":"2226","name":"*","chunks":[],"async":false}},"5057":{"*":{"id":"4177","name":"*","chunks":[],"async":false}},"7322":{"*":{"id":"9339","name":"*","chunks":[],"async":false}},"7758":{"*":{"id":"2628","name":"*","chunks":[],"async":false}},"8156":{"*":{"id":"1348","name":"*","chunks":[],"async":false}},"8245":{"*":{"id":"7737","name":"*","chunks":[],"async":false}},"9239":{"*":{"id":"6673","name":"*","chunks":[],"async":false}}},"edgeRscModuleMapping":{"470":{"*":{"id":"7641","name":"*","chunks":[],"async":false}},"1550":{"*":{"id":"9314","name":"*","chunks":[],"async":false}},"3854":{"*":{"id":"1896","name":"*","chunks":[],"async":false}},"5057":{"*":{"id":"7011","name":"*","chunks":[],"async":false}},"7758":{"*":{"id":"4218","name":"*","chunks":[],"async":false}},"8156":{"*":{"id":"8498","name":"*","chunks":[],"async":false}},"8245":{"*":{"id":"4191","name":"*","chunks":[],"async":false}},"9239":{"*":{"id":"2499","name":"*","chunks":[],"async":false}}}}
+globalThis.__RSC_MANIFEST = globalThis.__RSC_MANIFEST || {};
+globalThis.__RSC_MANIFEST["/page"] = {
+  moduleLoading: { prefix: "/_next/", crossOrigin: null },
+  ssrModuleMapping: {
+    "(app-pages-browser)/./src/components/App.tsx": {
+      "*": {
+        id: "(ssr)/./src/components/App.tsx",
+        name: "*",
+        chunks: [],
+        async: false,
+      },
+    },
+    "(app-pages-browser)/./src/components/ColorSchemeProvider.tsx": {
+      "*": {
+        id: "(ssr)/./src/components/ColorSchemeProvider.tsx",
+        name: "*",
+        chunks: [],
+        async: false,
+      },
+    },
+    "(app-pages-browser)/./src/app/page.tsx": {
+      "*": {
+        id: "(ssr)/./src/app/page.tsx",
+        name: "*",
+        chunks: [],
+        async: false,
+      },
+    },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+  },
+  edgeSSRModuleMapping: {},
+  clientModules: {
+    "/home/elpresidank/YeeBois/projects/beephole/apps/client/src/components/App.tsx":
+      {
+        id: "(app-pages-browser)/./src/components/App.tsx",
+        name: "*",
+        chunks: ["app/layout", "static/chunks/app/layout.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/apps/client/src/components/ColorSchemeProvider.tsx":
+      {
+        id: "(app-pages-browser)/./src/components/ColorSchemeProvider.tsx",
+        name: "*",
+        chunks: ["app/layout", "static/chunks/app/layout.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/@mui+material-pigment-css@7.0.1_@emotion+react@11.14.0_@types+react@19.1.0_react@19.1.0_62cc53a836728d1ce19d47fed62be1a9/node_modules/@mui/material-pigment-css/styles.css":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/@mui+material-pigment-css@7.0.1_@emotion+react@11.14.0_@types+react@19.1.0_react@19.1.0_62cc53a836728d1ce19d47fed62be1a9/node_modules/@mui/material-pigment-css/styles.css",
+        name: "*",
+        chunks: ["app/layout", "static/chunks/app/layout.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/apps/client/src/app/page.tsx":
+      {
+        id: "(app-pages-browser)/./src/app/page.tsx",
+        name: "*",
+        chunks: ["app/page", "static/chunks/app/page.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/client-page.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/client-segment.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/error-boundary.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/http-access-fallback/error-boundary.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/layout-router.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/metadata/async-metadata.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/metadata/metadata-boundary.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+    "/home/elpresidank/YeeBois/projects/beephole/node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/esm/client/components/render-from-template-context.js":
+      {
+        id: "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js",
+        name: "*",
+        chunks: ["app-pages-internals", "static/chunks/app-pages-internals.js"],
+        async: false,
+      },
+  },
+  entryCSSFiles: {
+    "/home/elpresidank/YeeBois/projects/beephole/apps/client/src/": [],
+    "/home/elpresidank/YeeBois/projects/beephole/apps/client/src/app/layout": [
+      { inlined: false, path: "static/css/app/layout.css" },
+    ],
+    "/home/elpresidank/YeeBois/projects/beephole/apps/client/src/app/page": [
+      { inlined: false, path: "static/css/app/page.css" },
+    ],
+  },
+  rscModuleMapping: {
+    "(app-pages-browser)/./src/components/App.tsx": {
+      "*": {
+        id: "(rsc)/./src/components/App.tsx",
+        name: "*",
+        chunks: [],
+        async: false,
+      },
+    },
+    "(app-pages-browser)/./src/components/ColorSchemeProvider.tsx": {
+      "*": {
+        id: "(rsc)/./src/components/ColorSchemeProvider.tsx",
+        name: "*",
+        chunks: [],
+        async: false,
+      },
+    },
+    "(app-pages-browser)/../../node_modules/.pnpm/@mui+material-pigment-css@7.0.1_@emotion+react@11.14.0_@types+react@19.1.0_react@19.1.0_62cc53a836728d1ce19d47fed62be1a9/node_modules/@mui/material-pigment-css/styles.css":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/@mui+material-pigment-css@7.0.1_@emotion+react@11.14.0_@types+react@19.1.0_react@19.1.0_62cc53a836728d1ce19d47fed62be1a9/node_modules/@mui/material-pigment-css/styles.css",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/./src/app/page.tsx": {
+      "*": {
+        id: "(rsc)/./src/app/page.tsx",
+        name: "*",
+        chunks: [],
+        async: false,
+      },
+    },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js":
+      {
+        "*": {
+          id: "(rsc)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+  },
+  edgeRscModuleMapping: {
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-page.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/client-segment.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/error-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/http-access-fallback/error-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/layout-router.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/async-metadata.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/metadata/metadata-boundary.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+    "(app-pages-browser)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js":
+      {
+        "*": {
+          id: "(ssr)/../../node_modules/.pnpm/next@15.2.4_@babel+core@7.26.10_@opentelemetry+api@1.9.0_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/client/components/render-from-template-context.js",
+          name: "*",
+          chunks: [],
+          async: false,
+        },
+      },
+  },
+};

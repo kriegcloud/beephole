@@ -1,11 +1,10 @@
 import { Database, DbSchema } from "@beep/database/index";
 import { TodoId } from "@beep/domain/EntityIds";
-import { TodosContract } from "@beep/domain/api/Contracts";
+import { TodosContract } from "@beep/domain";
 import * as d from "drizzle-orm";
 import * as Array from "effect/Array";
 import * as Effect from "effect/Effect";
 import * as S from "effect/Schema";
-
 export class TodosRepository extends Effect.Service<TodosRepository>()(
 	"TodosRepository",
 	{

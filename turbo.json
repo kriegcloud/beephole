@@ -3,42 +3,26 @@
   "ui": "tui",
   "tasks": {
     "codegen": {
-      "dependsOn": [
-        "^codegen"
-      ],
+      "dependsOn": ["^codegen"],
       "cache": false,
       "persistent": false
     },
     "test": {
-      "dependsOn": [
-        "^test"
-      ],
-      "outputs": [
-        "coverage/**"
-      ]
+      "dependsOn": ["^test"],
+      "outputs": ["coverage/**"]
     },
     "coverage": {
-      "dependsOn": [
-        "^coverage"
-      ],
-      "outputs": [
-        "coverage/**"
-      ]
+      "dependsOn": ["^coverage"],
+      "outputs": ["coverage/**"]
     },
     "lint": {
-      "dependsOn": [
-        "^lint"
-      ]
+      "dependsOn": ["^lint"]
     },
     "lint:fix": {
-      "dependsOn": [
-        "^lint:fix"
-      ]
+      "dependsOn": ["^lint:fix"]
     },
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "outputs": [
         "dist/**",
         "build/**",
@@ -50,11 +34,12 @@
         ".vercel/output/**"
       ]
     },
-    "check": {},
+    "check": {
+      "dependsOn": ["build", "^check"],
+      "outputs": ["tsconfig.tsbuildinfo"]
+    },
     "dev": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "persistent": false,
       "cache": false
     },

@@ -1,1 +1,10 @@
-{"pages":{},"app":{"/home/elpresidank/YeeBois/projects/beephole/apps/client/src/app/layout":["static/media/47cbc4e2adbc5db9-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}
+{
+  "pages": {},
+  "app": {
+    "/home/elpresidank/YeeBois/projects/beephole/apps/client/src/app/layout": [
+      "static/media/47cbc4e2adbc5db9-s.p.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}

@@ -1,15 +1,9 @@
 {
+  "name": "beephole",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.8.0",
-  "engines": {
-    "node": "22.14.0",
-    "pnpm": "10.8.0"
-  },
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
+  "workspaces": ["packages/*", "apps/*"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kriegcloud/beephole.git"
@@ -32,10 +26,10 @@
     "@babel/core": "^7.26.0",
     "@babel/plugin-transform-export-namespace-from": "^7.25.9",
     "@babel/plugin-transform-modules-commonjs": "^7.25.9",
+    "@biomejs/biome": "^1.9.4",
     "@effect/build-utils": "0.7.9",
     "@effect/language-service": "0.5.1",
     "@effect/vitest": "0.20.6",
-    "@types/dotenv": "^8.2.3",
     "@types/node": "^22.8.5",
     "babel-plugin-annotate-pure-calls": "^0.4.0",
     "effect": "3.14.6",

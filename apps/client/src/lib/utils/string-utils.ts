@@ -45,6 +45,7 @@ export const getNameInitials = (name: string | null | undefined): string => {
  */
 export const normalizeString = flow(
   String.normalize("NFKD"),
+  // biome-ignore lint/suspicious/noMisleadingCharacterClass: <explanation>
   String.replace(/[\u0300-\u036f]/g, ""), // Remove combining diacritical marks
   String.toLowerCase,
   String.replace(/[æœ]/g, "ae"),

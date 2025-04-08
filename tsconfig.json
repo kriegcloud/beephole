@@ -7,6 +7,6 @@
     { "path": "packages/server" },
     { "path": "packages/database" },
     { "path": "packages/kernel" },
-    { "path": "apps/client"}
+    { "path": "apps/client" }
   ]
 }

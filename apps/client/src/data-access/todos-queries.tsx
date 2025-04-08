@@ -1,12 +1,17 @@
-import { type TodosContract } from "@beep/domain/api/Contracts";
+import { TodosContract } from "@beep/domain";
 import { type TodoId } from "@beep/domain/EntityIds";
 import * as Effect from "effect/Effect";
 import { ApiClient } from "../layers/api-client";
-import { QueryData, useEffectMutation, useEffectQuery } from "../lib/tanstack-query";
+import {
+  QueryData,
+  useEffectMutation,
+  useEffectQuery,
+} from "../lib/tanstack-query";
 
 export namespace TodosQueries {
   const todosKey = QueryData.makeQueryKey("todos");
-  const todosHelpers = QueryData.makeHelpers<Array<TodosContract.Todo>>(todosKey);
+  const todosHelpers =
+    QueryData.makeHelpers<Array<TodosContract.Todo>>(todosKey);
 
   export const useTodosQuery = () => {
     return useEffectQuery({
@@ -19,7 +24,9 @@ export namespace TodosQueries {
     return useEffectMutation({
       mutationKey: ["TodosQueries.createTodo"],
       mutationFn: (todo: TodosContract.CreateTodoPayload) =>
-        Effect.flatMap(ApiClient, (client) => client.todos.create({ payload: todo })).pipe(
+        Effect.flatMap(ApiClient, (client) =>
+          client.todos.create({ payload: todo }),
+        ).pipe(
           Effect.tap((createdTodo) =>
             todosHelpers.setData((draft) => {
               draft.unshift(createdTodo);
@@ -34,7 +41,9 @@ export namespace TodosQueries {
     return useEffectMutation({
       mutationKey: ["TodosQueries.updateTodo"],
       mutationFn: (todo: TodosContract.Todo) =>
-        Effect.flatMap(ApiClient, (client) => client.todos.update({ payload: todo })).pipe(
+        Effect.flatMap(ApiClient, (client) =>
+          client.todos.update({ payload: todo }),
+        ).pipe(
           Effect.tap((updatedTodo) =>
             todosHelpers.setData((draft) => {
               const index = draft.findIndex((t) => t.id === updatedTodo.id);
@@ -52,7 +61,9 @@ export namespace TodosQueries {
     return useEffectMutation({
       mutationKey: ["TodosQueries.deleteTodo"],
       mutationFn: (id: TodoId) =>
-        Effect.flatMap(ApiClient, (client) => client.todos.delete({ payload: id })).pipe(
+        Effect.flatMap(ApiClient, (client) =>
+          client.todos.delete({ payload: id }),
+        ).pipe(
           Effect.tap(() =>
             todosHelpers.setData((draft) => {
               const index = draft.findIndex((t) => t.id === id);

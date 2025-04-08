@@ -7,6 +7,6 @@
     { "path": "packages/database/tsconfig.build.json" },
     { "path": "packages/server/tsconfig.build.json" },
     { "path": "packages/kernel/tsconfig.build.json" },
-    { "path": "apps/client/tsconfig.json"}
+    { "path": "apps/client/tsconfig.json" }
   ]
 }

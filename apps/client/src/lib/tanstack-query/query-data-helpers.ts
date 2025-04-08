@@ -1,6 +1,6 @@
-import { QueryClient } from "../../layers/common/query-client";
 import * as Effect from "effect/Effect";
 import * as mutative from "mutative";
+import { QueryClient } from "../../layers/common/query-client";
 import { type QueryVariables } from "./effect-query";
 
 export type QueryDataUpdater<TData> = (draft: mutative.Draft<TData>) => void;
@@ -30,9 +30,10 @@ type QueryKey<
  * const key = userKey({ id: "123" }); // returns ["user", { id: "123" }]
  * ```
  */
-export function makeQueryKey<Key extends string, Variables extends QueryVariables | void = void>(
-  key: Key,
-) {
+export function makeQueryKey<
+  Key extends string,
+  Variables extends QueryVariables | void = void,
+>(key: Key) {
   return ((variables?: Variables) =>
     variables === undefined
       ? ([key] as const)
@@ -98,7 +99,11 @@ export function makeHelpers<Data, Variables = void>(
           queryKey:
             variables.length === 0
               ? (queryKey as () => readonly [string])()
-              : (queryKey as (v: Variables) => readonly [string, ...Array<unknown>])(variables[0]),
+              : (
+                  queryKey as (
+                    v: Variables,
+                  ) => readonly [string, ...Array<unknown>]
+                )(variables[0]),
         });
       }),
     removeAllQueries: () =>
@@ -110,7 +115,11 @@ export function makeHelpers<Data, Variables = void>(
         client.setQueryData<Data>(
           params.length === 1
             ? (queryKey as () => readonly [string])()
-            : (queryKey as (v: Variables) => readonly [string, ...Array<unknown>])(params[0]),
+            : (
+                queryKey as (
+                  v: Variables,
+                ) => readonly [string, ...Array<unknown>]
+              )(params[0]),
           (oldData) => {
             if (oldData === undefined) return oldData;
             return mutative.create(
@@ -133,7 +142,11 @@ export function makeHelpers<Data, Variables = void>(
           queryKey:
             variables.length === 0
               ? (queryKey as () => readonly [string])()
-              : (queryKey as (v: Variables) => readonly [string, ...Array<unknown>])(variables[0]),
+              : (
+                  queryKey as (
+                    v: Variables,
+                  ) => readonly [string, ...Array<unknown>]
+                )(variables[0]),
         }),
       ).pipe(Effect.orDie),
     invalidateAllQueries: () =>
@@ -146,7 +159,11 @@ export function makeHelpers<Data, Variables = void>(
           queryKey:
             variables.length === 0
               ? (queryKey as () => readonly [string])()
-              : (queryKey as (v: Variables) => readonly [string, ...Array<unknown>])(variables[0]),
+              : (
+                  queryKey as (
+                    v: Variables,
+                  ) => readonly [string, ...Array<unknown>]
+                )(variables[0]),
         }),
       ).pipe(Effect.orDie),
     refetchAllQueries: () =>

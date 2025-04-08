@@ -1,29 +1,30 @@
-'use client';
-import * as React from 'react';
+"use client";
+import * as React from "react";
 
 const ColorSchemeContext = React.createContext<{
   colorScheme: string;
   setColorScheme: React.Dispatch<React.SetStateAction<string>>;
 }>({
-  colorScheme: 'dark',
-  setColorScheme: () => '',
+  colorScheme: "dark",
+  setColorScheme: () => "",
 });
 
 function setCookie(name: string, value: string, days = 100) {
-  let expires = '';
+  let expires = "";
   if (days) {
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     expires = `; expires=${date.toUTCString()}`;
   }
-  document.cookie = `${name}=${value || ''}${expires}; path=/`;
+  document.cookie = `${name}=${value || ""}${expires}; path=/`;
 }
 
 export function ColorSchemeProvider({
-                                      colorScheme: initialColorScheme,
-                                      children,
-                                    }: React.PropsWithChildren<{ colorScheme: string }>) {
-  const [colorScheme, setColorScheme] = React.useState<string>(initialColorScheme);
+  colorScheme: initialColorScheme,
+  children,
+}: React.PropsWithChildren<{ colorScheme: string }>) {
+  const [colorScheme, setColorScheme] =
+    React.useState<string>(initialColorScheme);
 
   const contextValue = React.useMemo(
     () => ({ colorScheme, setColorScheme }),
@@ -32,8 +33,8 @@ export function ColorSchemeProvider({
 
   // Set the colorScheme in localStorage
   React.useEffect(() => {
-    setCookie('colorScheme', colorScheme);
-    localStorage.setItem('colorScheme', colorScheme);
+    setCookie("colorScheme", colorScheme);
+    localStorage.setItem("colorScheme", colorScheme);
   }, [colorScheme]);
 
   // Handle when localStorage has changed
@@ -41,21 +42,25 @@ export function ColorSchemeProvider({
     const handleStorage = (event: StorageEvent) => {
       const value = event.newValue;
       if (
-        typeof event.key === 'string' &&
-        event.key === 'colorScheme' &&
-        typeof value === 'string'
+        typeof event.key === "string" &&
+        event.key === "colorScheme" &&
+        typeof value === "string"
       ) {
         setColorScheme(value);
       }
     };
     // For syncing color-scheme changes between iframes
-    window.addEventListener('storage', handleStorage);
+    window.addEventListener("storage", handleStorage);
     return () => {
-      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener("storage", handleStorage);
     };
   }, [setColorScheme]);
 
-  return <ColorSchemeContext.Provider value={contextValue}>{children}</ColorSchemeContext.Provider>;
+  return (
+    <ColorSchemeContext.Provider value={contextValue}>
+      {children}
+    </ColorSchemeContext.Provider>
+  );
 }
 
 export const useColorScheme = () => {

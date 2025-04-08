@@ -2,12 +2,6 @@
   "name": "@beep/domain",
   "version": "0.0.0",
   "type": "module",
-  "main": "build/cjs/index.js",
-  "module": "build/esm/index.js",
-  "types": "build/dts/index.d.ts",
-  "exports": {
-    "./*": "./build/esm/*"
-  },
   "license": "MIT",
   "description": "The domain template",
   "repository": {
@@ -27,12 +21,17 @@
     "build-annotate": "babel build/esm --plugins annotate-pure-calls --out-dir build/esm --source-maps",
     "check": "tsc -b tsconfig.json",
     "test": "vitest",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --write",
     "coverage": "vitest --coverage"
   },
   "dependencies": {
     "@beep/kernel": "workspace:^",
     "@effect/platform": "0.80.6",
     "effect": "3.14.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
   },
   "effect": {
     "generateExports": {
